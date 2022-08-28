@@ -6,7 +6,8 @@ import { NavLink } from "react-router-dom"
 import { Loader } from "../../../utils/component/Loader"
 import { AuthContext } from "../../../utils/context/AuthContext"
 import { useHttp } from "../../../utils/hooks/http.hook"
-import { ManagerOrderCard } from "./ManagerOrderCard"
+import { NotTakedManagerOrderFilter } from "./NotTakedManagerOrderFilter"
+
 
 export const NotTakedCustomerOrderList=()=>{
    
@@ -27,24 +28,15 @@ export const NotTakedCustomerOrderList=()=>{
   useEffect(() => {
     getAllOrders()
   }, [getAllOrders])
+
+  if(!(orders.length>0) && !loading){
+    return <h6 className="center" style={{marginTop:'20%'}}>Пусто</h6>
+  }
   
   if (loading) {
     return <Loader/>
   }
   return(<>
-    {
-        orders.map((item,i)=>{ 
-          if(orders[i].name===''){
-            console.log('undefined') 
-          }else{
-          return(
-           <>
-           <ManagerOrderCard data={item}/>
-           </>
-          ) 
-          }
-         })
-    }
-  
+    {orders.length>0 && !loading && <NotTakedManagerOrderFilter dataList={orders}/>}
   </>)
 }

@@ -3,6 +3,7 @@ import { AuthContext } from "../../../utils/context/AuthContext"
 import { useHttp } from "../../../utils/hooks/http.hook"
 import { Loader } from "../../../utils/component/Loader"
 import { ManagerClothList } from "./ManagerClothList"
+import { ManagerClothFilter } from "./ManagerClothFilter"
 
 
 export const ManagerLoadClothList=()=>{
@@ -24,12 +25,16 @@ export const ManagerLoadClothList=()=>{
   useEffect(() => {
     getAllCloths()
   }, [getAllCloths])
+
+  if(!(clothData.length>0) && !loading){
+    return <h6 className="center" style={{marginTop:'20%'}}>Пусто</h6>
+  }
   
   if (loading) {
     return <Loader/>
   }
   return(<>
-  {clothData && !loading && <ManagerClothList dataList={clothData}/>}
+  {clothData.length>0 && !loading && <ManagerClothFilter dataList={clothData} update={getAllCloths}/>}
   </>)
 
 }

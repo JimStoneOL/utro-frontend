@@ -40,7 +40,7 @@ export const ManagerAnyFurnitureProduct=()=>{
 
     return(
         <>
-        {!loading && furnitureProduct ? <CustomerFurnitureDetailList dataList={furnitureProduct}/> : <div>Фурнитуры продукта не найдены</div>}
+        {!loading && furnitureProduct ? <CustomerFurnitureDetailList dataList={furnitureProduct}/> : <h6 className="center" style={{marginTop:'20%'}}>Фурнитуры продукта не найдены</h6>}
         </>
     )
 }

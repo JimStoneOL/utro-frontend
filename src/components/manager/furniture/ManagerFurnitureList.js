@@ -4,7 +4,7 @@ import { AuthContext } from "../../../utils/context/AuthContext"
 import { useHttp } from "../../../utils/hooks/http.hook"
 import { ManagerFurniture } from "./ManagerFurniture"
 
-export const ManagerFurnitureList=({dataList})=>{
+export const ManagerFurnitureList=({dataList,update})=>{
 
   const {loading, request} = useHttp()
   const {token} = useContext(AuthContext)
@@ -26,31 +26,24 @@ export const ManagerFurnitureList=({dataList})=>{
   },[token,request])
   
   useEffect(()=>{
-    dataList.map(data=>{
-      if(!(dataList.length+1===furniture.length)){
-      getImageByArticle(data)
+    const fetchData = async () => {
+      for (const item of dataList) {
+        await getImageByArticle(item);
       }
-    })
-  } ,[])
-  
-  var interval=setInterval(()=>{
-    if(furniture.length===dataList.length+1){
       setIsLoaded(true)
-      clearInterval(interval)
-    }else{
-      console.log('not loaded')
-    }
-  },1000)
+  }
+  fetchData();
+  } ,[])
 
 
   return(
     <>
-       {isLoaded ? <ShowFurniture dataList={furniture}/> : <Loader/>}
+       {isLoaded ? <ShowFurniture dataList={furniture} update={update}/> : <Loader/>}
     </>
   )
 }
 
-export const ShowFurniture=({dataList})=>{
+export const ShowFurniture=({dataList,update})=>{
   return(<>
     {
         dataList.map((item,i)=>{ 
@@ -59,7 +52,7 @@ export const ShowFurniture=({dataList})=>{
           }else{
           return(
            <>
-           <ManagerFurniture data={item}/>
+           <ManagerFurniture data={item} update={update}/>
            </>
           ) 
           }

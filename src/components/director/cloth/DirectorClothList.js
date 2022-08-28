@@ -15,15 +15,12 @@ export const DirectorClothList=({dataList})=>{
   }])
   
 const getImageByArticle= useCallback(async (data) => {
-  console.log(cloth)
   try {
     const fetched = await request(`http://localhost:8080/api/image/get/cloth/${data.article}`, 'GET', null, {
       Authorization: `Bearer ${token}`
     })
 
    data.imageBytes=fetched.imageBytes
-   //setTheObject(prevState => ({ ...prevState, currentOrNewKey: newValue}));
-  // setCloth(cloth=>({...cloth,data}))
     if(!(cloth.length===dataList.length+1)){
      cloth.push(data)
     }
@@ -32,21 +29,14 @@ const getImageByArticle= useCallback(async (data) => {
 },[token,request])
 
 useEffect(()=>{
-  dataList.map(data=>{
-    if(!(dataList.length+1===cloth.length)){
-    getImageByArticle(data)
+  const fetchData = async () => {
+    for (const item of dataList) {
+      await getImageByArticle(item);
     }
-  })
-} ,[])
-
-var interval=setInterval(()=>{
-  if(cloth.length===dataList.length+1){
     setIsLoaded(true)
-    clearInterval(interval)
-  }else{
-    console.log('not loaded')
-  }
-},1000)
+}
+fetchData();
+} ,[])
 
 
 return(

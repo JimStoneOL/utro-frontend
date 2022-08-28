@@ -62,7 +62,7 @@ export const ManagerCreateFurniture=()=>{
           Authorization: `Bearer ${token}`
         })
         furnitureArticle=data.article
-        message('Успешно создан '+furnitureArticle)
+        message('Фурнитура успешно создана '+furnitureArticle)
       }catch(e){}
       try{
         axios.post(`http://localhost:8080/api/image/upload/furniture/${furnitureArticle}`,formData,{
@@ -102,11 +102,11 @@ export const ManagerCreateFurniture=()=>{
         <div className="row">
         <div className="">
           <div className="card center">
-            <div className='teal lighten-2'>
+            <div className='pink lighten-5'>
             <div className="card-content white-text">
-              <span className="card-title">Создание фурнитуры</span>
-              <div className="teal lighten-2">
-              <div className="input-field teal lighten-2">
+              <span className="card-title" style={{color:'rgb(105, 182, 204)'}}>Создание фурнитуры</span>
+              <div className="pink lighten-5">
+              <div className="input-field pink lighten-5">
                   <input
                     placeholder="Введите название"
                     id="name"
@@ -117,7 +117,7 @@ export const ManagerCreateFurniture=()=>{
                     onChange={changeHandler}
                   />
                   </div>
-                  <div className="input-field teal lighten-2">
+                  <div className="input-field pink lighten-5">
                   <input
                     placeholder="Введите тип"
                     id="type"
@@ -128,7 +128,7 @@ export const ManagerCreateFurniture=()=>{
                     onChange={changeHandler}
                   />
                   </div>
-                  <div className="input-field teal lighten-2">
+                  <div className="input-field pink lighten-5">
                   <TextField
                         id="outlined-select-currency"
                         select
@@ -153,7 +153,7 @@ export const ManagerCreateFurniture=()=>{
                     onChange={changeHandler}
                   />
                   </div>
-                  <div className="input-field teal lighten-2">
+                  <div className="input-field">
                   <input
                     placeholder="Введите длину"
                     id="length"
@@ -164,7 +164,7 @@ export const ManagerCreateFurniture=()=>{
                     onChange={changeHandler}
                   />
                   </div>
-                  <div className="input-field teal lighten-2">
+                  <div className="input-field">
                   <input
                     placeholder="Введите вес"
                     id="weight"
@@ -175,12 +175,14 @@ export const ManagerCreateFurniture=()=>{
                     onChange={changeHandler}
                   />
                   </div>
-                  <div className="teal lighten-0">
+                  <div className="pink lighten-5">
                     <UploadControl onChange={handleAddBanner} accept="image/*">
+                    <div style={{color:'rgb(105, 182, 204)',cursor:'pointer'}}>
                     {file ? file.name : 'Добавить изображение'}
+                    </div>
                     </UploadControl>
                 </div>
-                  <div className="input-field teal lighten-2">
+                  <div className="">
                   <input
                     placeholder="укажите цену"
                     id="price"
@@ -196,7 +198,7 @@ export const ManagerCreateFurniture=()=>{
             <div className="card-action">
               <button
                 className="btn own-button"
-                style={{marginRight: 10}}
+                style={{marginRight: 10,borderRadius:'50px'}}
                 onClick={pressHandler}
               >
                 Создать

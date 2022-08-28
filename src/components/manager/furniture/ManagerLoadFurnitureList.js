@@ -2,13 +2,15 @@ import { useCallback, useContext, useEffect, useState } from "react"
 import { AuthContext } from "../../../utils/context/AuthContext"
 import { useHttp } from "../../../utils/hooks/http.hook"
 import { Loader } from "../../../utils/component/Loader"
-import { ManagerFurnitureList } from "./ManagerFurnitureList"
+import { ManagerFurnitureFilter } from "./ManagerFurnitureFilter"
+
 
 export const ManagerLoadFurnitureList=()=>{
 
     const {loading, request} = useHttp()
     const {token} = useContext(AuthContext)
     const [furnitureData, setFurnitureData]=useState([])
+   
 
     const getAllFurniture = useCallback(async () => {
         try {
@@ -22,16 +24,18 @@ export const ManagerLoadFurnitureList=()=>{
       useEffect(() => {
         getAllFurniture()
       }, [getAllFurniture])
-      
+
+      if(!(furnitureData.length>0) && !loading){
+        return <h6 className="center" style={{marginTop:'20%'}}>Пусто</h6>
+      }
+  
       if (loading) {
         return <Loader/>
       }
 
       return(
         <>
-        {furnitureData && !loading && <ManagerFurnitureList dataList={furnitureData}/>}
+        {furnitureData.length>0 && !loading && <ManagerFurnitureFilter dataList={furnitureData} update={getAllFurniture}/>}
         </>
       )
-
-
 }

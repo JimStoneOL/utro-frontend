@@ -85,6 +85,7 @@ export const ManagerProductCard=({data})=>{
            <div class="card-action">
                 <Link to={`/any/detail/cloth/${data.article}`}>Ткань</Link>
                 <Link to={`/any/detail/furniture/${data.article}`}>Фурнитура</Link>
+                <Link to={`/any/detail/images/${data.article}`}>Изображения</Link>
      </div>
          </div>
        </div>

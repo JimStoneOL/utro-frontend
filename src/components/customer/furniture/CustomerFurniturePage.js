@@ -3,6 +3,7 @@ import { AuthContext } from "../../../utils/context/AuthContext"
 import { useHttp } from "../../../utils/hooks/http.hook"
 import { Loader } from "../../../utils/component/Loader"
 import { CustomerFurnitureList } from "./CustomerFurnitureList"
+import { CustomerFurnitureFilter } from "./CustomerFurnitureFilter"
 
 export const CustomerFurniturePage=()=>{
 
@@ -31,7 +32,7 @@ export const CustomerFurniturePage=()=>{
 
     return(
       <>
-          {!loading && furnitureData && <CustomerFurnitureList dataList={furnitureData}/>}
+          {!loading && furnitureData.length>0 && <CustomerFurnitureFilter dataList={furnitureData}/>}
         </>
     )
 }

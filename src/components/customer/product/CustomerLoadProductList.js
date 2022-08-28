@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import { Loader } from "../../../utils/component/Loader"
 import { AuthContext } from "../../../utils/context/AuthContext"
 import { useHttp } from "../../../utils/hooks/http.hook"
+import { CustomerProductFilter } from "./CustomerProductFilter"
 import { CustomerProductList } from "./CustomerProductList"
 
 export const CustomerLoadProductList=()=>{
@@ -32,7 +33,7 @@ export const CustomerLoadProductList=()=>{
 
       return(<>
       
-      {!loading && productData && <CustomerProductList dataList={productData}/>}
+      {!loading && productData.length>0 && <CustomerProductFilter dataList={productData}/>}
 
       </>)
 

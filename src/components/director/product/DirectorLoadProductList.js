@@ -3,6 +3,7 @@ import { useContext } from "react"
 import { Loader } from "../../../utils/component/Loader"
 import { AuthContext } from "../../../utils/context/AuthContext"
 import { useHttp } from "../../../utils/hooks/http.hook"
+import { DirectorProductContext } from "./DirectorProductContext"
 import { DirectorProductList } from "./DirectorProductList"
 
 
@@ -23,13 +24,17 @@ export const DirectorLoadProductList=()=>{
       useEffect(() => {
         getAllProducts()
       }, [getAllProducts])
+
+      if(!(productData.length>0) && !loading){
+        return <h6 className="center" style={{marginTop:'20%'}}>Пусто</h6>
+      }
       
       if (loading) {
         return <Loader/>
       }
       return(<>
-      
-      {!loading && productData && <DirectorProductList dataList={productData}/>}
-
+         <DirectorProductContext.Provider value={{update:getAllProducts}}>
+         {!loading && productData.length>0 && <DirectorProductList dataList={productData}/>}
+    </DirectorProductContext.Provider>
       </>)
 }

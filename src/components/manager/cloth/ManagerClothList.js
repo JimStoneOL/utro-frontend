@@ -5,7 +5,7 @@ import { useHttp } from "../../../utils/hooks/http.hook"
 import { ManagerCloth } from "./ManagerCloth"
 
 
-export const ManagerClothList=({dataList})=>{
+export const ManagerClothList=({dataList,update})=>{
 
   const {loading, request} = useHttp()
   const {token} = useContext(AuthContext)
@@ -22,8 +22,6 @@ const getImageByArticle= useCallback(async (data) => {
     })
 
    data.imageBytes=fetched.imageBytes
-   //setTheObject(prevState => ({ ...prevState, currentOrNewKey: newValue}));
-  // setCloth(cloth=>({...cloth,data}))
     if(!(cloth.length===dataList.length+1)){
      cloth.push(data)
     }
@@ -32,32 +30,24 @@ const getImageByArticle= useCallback(async (data) => {
 },[token,request])
 
 useEffect(()=>{
-  dataList.map(data=>{
-    if(!(dataList.length+1===cloth.length)){
-    getImageByArticle(data)
+  const fetchData = async () => {
+    for (const item of dataList) {
+      await getImageByArticle(item);
     }
-  })
-} ,[])
-
-var interval=setInterval(()=>{
-  if(cloth.length===dataList.length+1){
     setIsLoaded(true)
-    clearInterval(interval)
-  }else{
-    console.log('not loaded')
-  }
-},1000)
-
+}
+fetchData();
+} ,[])
 
 return(
   <>
-     {isLoaded ? <ShowCloth dataList={cloth}/> : <Loader/>}
+     {isLoaded ? <ShowCloth dataList={cloth} update={update}/> : <Loader/>}
   </>
 )
 }
 
 
-export const ShowCloth=({dataList})=>{
+export const ShowCloth=({dataList,update})=>{
   return(<>
     {
         dataList.map((item,i)=>{ 
@@ -66,7 +56,7 @@ export const ShowCloth=({dataList})=>{
           }else{
           return(
            <>
-           <ManagerCloth data={item}/>
+           <ManagerCloth data={item} update={update}/>
            </>
           ) 
           }

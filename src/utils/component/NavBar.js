@@ -6,6 +6,7 @@ import morning from '../img/morning.jpg'
 import { Loader } from './Loader'
 import '../styles/font.css'
 
+
 export const Navbar = () => {
   const history = useHistory()
   const {loading, request} = useHttp()
@@ -68,12 +69,21 @@ export const Navbar = () => {
             Фурнитура
             </div>
             </NavLink></li>
-            <li><NavLink to="/about">
+            <li><NavLink to="/bucket" className="right">
+              <div className='own-black txt'>
+              <i class="material-icons">shopping_cart</i>
+                </div>
+            </NavLink></li>
+            <li><NavLink to="/email">
           <div className='own-black txt'>
-            О нас
+          <i class="material-icons">email</i>
             </div>
             </NavLink></li>
-            
+            <li><NavLink to="/about">
+          <div className='own-black txt'>
+          <i class="material-icons">info_outline</i>
+            </div>
+            </NavLink></li>
         </ul>
       </div>
     </nav>

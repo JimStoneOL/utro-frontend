@@ -1,10 +1,8 @@
 import { useCallback, useContext, useEffect, useState } from "react"
-import { NavLink } from "react-router-dom"
 import { Loader } from "../../../utils/component/Loader"
 import { AuthContext } from "../../../utils/context/AuthContext"
 import { useHttp } from "../../../utils/hooks/http.hook"
-import { ManagerOrderCard } from "./ManagerOrderCard"
-import { TakedManagerOrderCard } from "./TakedManagerOrderCard"
+import { TakedManagerOrderFilter } from "./TakedManagerOrderFilter"
 
 
 export const ManagerOrderList=()=>{
@@ -25,24 +23,15 @@ export const ManagerOrderList=()=>{
   useEffect(() => {
     getAllOrders()
   }, [getAllOrders])
+
+  if(!(orders.length>0) && !loading){
+    return <h6 className="center" style={{marginTop:'20%'}}>Пусто</h6>
+  }
   
   if (loading) {
     return <Loader/>
   }
   return(<>
-    {
-        orders.map((item,i)=>{ 
-          if(orders[i].name===''){
-            console.log('undefined') 
-          }else{
-          return(
-           <>
-           <TakedManagerOrderCard data={item}/>
-           </>
-          ) 
-          }
-         })
-    }
-  
+  {orders.length>0 && !loading && <TakedManagerOrderFilter dataList={orders}/>}
   </>)
 }

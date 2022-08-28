@@ -24,8 +24,6 @@ export const DirectorProduct=()=>{
           setProduct(fetched)
 
         } catch (e) {}
-
-
         
       }, [token, request])
     

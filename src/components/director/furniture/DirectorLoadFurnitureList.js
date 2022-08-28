@@ -3,6 +3,7 @@ import { AuthContext } from "../../../utils/context/AuthContext"
 import { useHttp } from "../../../utils/hooks/http.hook"
 import { DirectorFurnitureList } from "./DirectorFurnitureList"
 import { Loader } from "../../../utils/component/Loader"
+import { DirectorFurnitureFilter } from "./DirectorFurnitureFilter"
 
 export const DirectorLoadFurnitureList=()=>{
 
@@ -22,6 +23,10 @@ export const DirectorLoadFurnitureList=()=>{
       useEffect(() => {
         getAllFurniture()
       }, [getAllFurniture])
+
+      if(!(furnitureData.length>0) && !loading){
+        return <h6 className="center" style={{marginTop:'20%'}}>Пусто</h6>
+      }
       
       if (loading) {
         return <Loader/>
@@ -29,7 +34,7 @@ export const DirectorLoadFurnitureList=()=>{
 
       return(
         <>
-        {furnitureData && !loading && <DirectorFurnitureList dataList={furnitureData}/>}
+        {furnitureData.length>0 && !loading && <DirectorFurnitureFilter dataList={furnitureData}/>}
         </>
       )
     

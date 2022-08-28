@@ -61,7 +61,7 @@ export const DirectorCreateCloth=()=>{
           Authorization: `Bearer ${token}`
         })
         clothArticle=data.article
-        message('Успешно создан '+clothArticle)
+        message('Ткань успешно создана '+clothArticle)
       }catch(e){}
       try{
         axios.post(`http://localhost:8080/api/image/upload/cloth/${clothArticle}`,formData,{
@@ -104,11 +104,11 @@ export const DirectorCreateCloth=()=>{
            <div className="row">
         <div className="">
           <div className="card center">
-            <div className='teal lighten-2'>
+            <div className='pink lighten-5'>
             <div className="card-content white-text">
-              <span className="card-title">Создание ткани</span>
-              <div className="teal lighten-2">
-              <div className="input-field teal lighten-2">
+              <span className="card-title" style={{color:'rgb(105, 182, 204)'}}>Создание ткани</span>
+              <div className="pink lighten-5">
+              <div className="input-field">
                   <input
                     placeholder="Введите название"
                     id="name"
@@ -119,7 +119,7 @@ export const DirectorCreateCloth=()=>{
                     onChange={changeHandler}
                   />
                   </div>
-                  <div className="input-field teal lighten-2">
+                  <div className="input-field">
                   <input
                     placeholder="Выберите цвет"
                     id="color"
@@ -130,7 +130,7 @@ export const DirectorCreateCloth=()=>{
                     onChange={changeHandler}
                   />
                   </div>
-                  <div className="input-field teal lighten-2">
+                  <div className="input-field">
                   <input
                     placeholder="Выберите рисунок"
                     id="drawing"
@@ -141,12 +141,14 @@ export const DirectorCreateCloth=()=>{
                     onChange={changeHandler}
                   />
                   </div>
-                  <div className="teal lighten-0">
+                  <div className="">
                     <UploadControl onChange={handleAddBanner} accept="image/*">
-                    {file ? file.name : 'Добавить изображение'}
+                      <div style={{color:'rgb(105, 182, 204)',cursor:'pointer'}}>
+                      {file ? file.name : 'Добавить изображение'}
+                      </div>
                     </UploadControl>
                 </div>
-                  <div className="input-field teal lighten-2">
+                  <div className="input-field">
                   <input
                     placeholder="Введите состав"
                     id="structure"
@@ -171,7 +173,7 @@ export const DirectorCreateCloth=()=>{
                           </MenuItem>
                         ))}
                  </TextField>
-                  <div className="input-field teal lighten-2">
+                  <div className="input-field">
                   <input
                     placeholder="Укажите ширину"
                     id="width"
@@ -183,7 +185,7 @@ export const DirectorCreateCloth=()=>{
                  />
                   </div>
 
-                  <div className="input-field teal lighten-2">
+                  <div className="input-field">
                   <input
                     placeholder="Укажите длину"
                     id="length"
@@ -195,7 +197,7 @@ export const DirectorCreateCloth=()=>{
                   />
                   </div>
                   
-                  <div className="input-field teal lighten-2">
+                  <div className="input-field">
                   <input
                     placeholder="Укажите цену"
                     id="price"
@@ -211,7 +213,7 @@ export const DirectorCreateCloth=()=>{
             <div className="card-action">
               <button
                 className="btn own-button"
-                style={{marginRight: 10}}
+                style={{marginRight: 10,borderRadius:'50px'}}
                 onClick={pressHandler}
               >
                 Создать

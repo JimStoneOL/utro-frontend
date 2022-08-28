@@ -32,8 +32,8 @@ export const ReportPage=()=>{
         <>
           <Box sx={{ p: 5, border: '1px solid grey',borderColor:'#42a5f5' }}>
                 <Stack spacing={3} border>
-                <a class="waves-effect waves-light btn" href='http://localhost:8080/api/pdf/generate/remains'>Отчёт об остатках</a>
-                <a class="waves-effect waves-light btn" href='http://localhost:8080/api/pdf/generate/moves'>Отчёт о движения</a>
+                <a class="waves-effect waves-light btn pink lighten-5" href='http://localhost:8080/api/pdf/generate/remains'><div className='txt' style={{color:'black'}}>Отчёт об остатках</div></a>
+                <a class="waves-effect waves-light btn pink lighten-5" href='http://localhost:8080/api/pdf/generate/moves'><div className='txt' style={{color:'black'}}>Отчёт о движения</div></a>
                 </Stack> 
             </Box>
         </>

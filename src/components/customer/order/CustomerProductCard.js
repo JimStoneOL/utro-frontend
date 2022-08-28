@@ -84,6 +84,7 @@ export const CustomerProductCard=({data})=>{
            <div class="card-action">
                 <Link to={`/my/detail/cloth/${data.article}`}>Ткань</Link>
                 <Link to={`/my/detail/furniture/${data.article}`}>Фурнитура</Link>
+               <Link to={`/my/detail/images/${data.article}`}>Изображения</Link>
      </div>
          </div>
        </div>

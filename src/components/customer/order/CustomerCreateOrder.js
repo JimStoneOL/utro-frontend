@@ -8,6 +8,8 @@ import Modal from '@mui/material/Modal';
 import { Loader } from "../../../utils/component/Loader"
 import { CustomerMiniProductList } from "./CustomerMiniProductList";
 import { useMessage } from "../../../utils/hooks/message.hook";
+import { CustomerConfirmOrder } from "./CustomerConfirmOrder";
+import { Link } from "react-router-dom";
 
 
 
@@ -18,8 +20,9 @@ export const CustomerCreateOrder=()=>{
   const {token} = useContext(AuthContext)
   const [product,setProduct]=useState([{}])
   const [productOpen, setProductOpen] = useState(false);
-  const [selectedProduct,setSelectedProduct]=useState([{}])
+  const [selectedProduct,setSelectedProduct]=useState([])
   const [orderedProduct,setOrderedProduct]=useState([{}])
+  const [createdOrder,setCreatedOrder]=useState(null)
   const handleProductOpen = () =>{
     setProductOpen(true);
     getAllProduct()
@@ -90,28 +93,34 @@ export const CustomerCreateOrder=()=>{
  
 
   const createOrderHandler=async event=>{
-    console.log(selectedProduct)
-
+    if(selectedProduct<1){
+      message('Вы не выбрали продукты')
+      return
+    }
     let orderId
     try{
       const data=await request('http://localhost:8080/api/order/create', 'POST',null,{
         Authorization: `Bearer ${token}`
       })
       orderId=data.id
-      selectedProduct.forEach((item,i) => {
-        if(i>0){
-          item.orderId=orderId
-          sendOrderedProduct(item)
-      }
-    });
-   
+    for (const item of selectedProduct) {
+      item.orderId=orderId
+      await sendOrderedProduct(item);
+    }
+    }catch(e){}
+
+      try{
+      const responseMessage=await request(`http://localhost:8080/api/order/delete/aftermath/${orderId}`, 'POST',null,{
+        Authorization: `Bearer ${token}`
+      })
+      message(responseMessage.message)
     }catch(e){}
 
     try{
       const updated=await request(`http://localhost:8080/api/order/update/${orderId}`, 'POST',null,{
         Authorization: `Bearer ${token}`
       })
-      console.log(updated)
+      setCreatedOrder(updated)
     }catch(e){}
   }
 
@@ -135,25 +144,12 @@ export const CustomerCreateOrder=()=>{
 
     return(
       <>
-      <Button onClick={handleProductOpen}>Выбрать продукты</Button>
-                <Modal
-                            open={productOpen}
-                            onClose={handleProductClose}
-                            aria-labelledby="modal-modal-title"
-                            aria-describedby="modal-modal-description"
-                            
-                        >
-                            <Box sx={style}>
-                            <Typography id="modal-modal-title" variant="h6" component="h2">
-                                Выбор продуктов
-                            </Typography>
-                            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                            {!loading && product && <CustomerMiniProductList dataList={product} selectProduct={selectProduct}/>}
-                            </Typography>
-                            </Box>
-              </Modal>
+                           {!(product.length>0) && !loading && <h6 className="center">Пусто. <Link to={'/product'}>Создать продукт</Link></h6>}
+                            {!loading && product.length>0 && !createdOrder && <CustomerMiniProductList dataList={product} selectProduct={selectProduct}/>}
               <br/>
-              <Button variant="outlined" onClick={createOrderHandler} disabled={!(selectedProduct.length>1)}>Создать</Button>
+              {createdOrder && <CustomerConfirmOrder data={createdOrder}/>}
+              <br/>
+              {!createdOrder && <Button variant="outlined" onClick={createOrderHandler}>Создать</Button>}
       </>
     )
 }

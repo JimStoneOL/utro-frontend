@@ -5,8 +5,8 @@ export const AboutPage=()=>{
         <div className="row">
         <div className="">
           <div className="card center">
-            <div className='teal lighten-2'>
-            <div className="card-content white-text">
+            <div className=''>
+            <div className="card-content ">
           <img class="" width="265" height="200" src={morning}/>
               <span className="card-title"></span>
               <p>  Мы компания производящая продукцию по вашим заказам. <br/>

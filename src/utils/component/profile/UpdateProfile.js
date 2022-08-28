@@ -4,6 +4,7 @@ import { AuthContext } from "../../../utils/context/AuthContext"
 import { useHttp } from "../../../utils/hooks/http.hook"
 import { useMessage } from "../../../utils/hooks/message.hook"
 import axios from 'axios'
+import { Loader } from "../Loader"
 
 
 export const UpdateProfile=()=>{
@@ -17,9 +18,14 @@ export const UpdateProfile=()=>{
   const [file,setFile]=useState(null)
 
   const pressHandler = async event => {
-    console.log(file)
     const formData=new FormData()
     formData.append("file",file)
+    try{
+          await request('http://localhost:8080/api/user/update', 'POST', {...form},{
+          Authorization: `Bearer ${token}`
+        })
+    }catch(e){}
+    message('Данные обновлены')
       try {
         axios.post('http://localhost:8080/api/image/upload/avatar',formData,{
           headers:{
@@ -28,7 +34,7 @@ export const UpdateProfile=()=>{
           }
         }
         )
-        window.location.reload()
+       message('Изображение обновлено')
       } catch (e) {}
     }
 
@@ -56,19 +62,20 @@ export const UpdateProfile=()=>{
     setForm({ ...form, [event.target.name]: event.target.value })
   }
 
-  const fileChangeHandler = event => {
-    setFile(event.target.value)
+
+  if (loading) {
+    return <Loader/>
   }
   
   return(
         <div className="row">
         <div className="">
           <div className="card center">
-            <div className='teal lighten-2'>
+            <div className='pink lighten-5'>
             <div className="card-content white-text">
-              <span className="card-title">Обновление профиля</span>
-              <div className="teal lighten-2">
-              <div className="input-field teal lighten-2">
+              <span className="card-title" style={{color:'rgb(105, 182, 204)'}}>Обновление профиля</span>
+              <div className="pink lighten-5">
+              <div className="input-field">
                   <input
                     placeholder="Введите имя"
                     id="firstname"
@@ -79,7 +86,7 @@ export const UpdateProfile=()=>{
                     onChange={changeHandler}
                   />
                   </div>
-                  <div className="input-field teal lighten-2">
+                  <div className="input-field">
                   <input
                     placeholder="Введите фамилию"
                     id="lastname"
@@ -91,9 +98,11 @@ export const UpdateProfile=()=>{
                   />
                   </div>
                 
-                  <div className="teal lighten-0">
-                    <UploadControl onChange={handleAddBanner} accept="image/*">
-                      Добавить изображение
+                  <div className="">
+                  <UploadControl onChange={handleAddBanner} accept="image/*">
+                    <div style={{color:'rgb(105, 182, 204)',cursor:'pointer'}}>
+                    {file ? file.name : 'Добавить изображение'}
+                    </div>
                     </UploadControl>
                 </div>
               </div>
@@ -101,7 +110,7 @@ export const UpdateProfile=()=>{
             <div className="card-action">
               <button
                 className="btn own-button"
-                style={{marginRight: 10}}
+                style={{marginRight: 10,borderRadius:'50px'}}
                 onClick={pressHandler}
               >
                 Обновить

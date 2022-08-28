@@ -3,6 +3,7 @@ import { AuthContext } from "../../../utils/context/AuthContext"
 import { useHttp } from "../../../utils/hooks/http.hook"
 import { Loader } from "../../../utils/component/Loader"
 import { CustomerClothList } from "./CustomerClothList"
+import { CustomerClothFilter } from "./CustomerClothFilter"
 
 
 export const CustomerClothPage=()=>{
@@ -28,10 +29,11 @@ export const CustomerClothPage=()=>{
   if (loading) {
     return <Loader/>
   }
+
   
     return(
       <>
-      {!loading && clothData && <CustomerClothList dataList={clothData}/>}
+      {!loading && clothData.length>0 && <CustomerClothFilter dataList={clothData}/>}
         </>
     )
  }

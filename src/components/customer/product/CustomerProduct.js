@@ -100,10 +100,11 @@ export const CustomerProduct=({data})=>{
                 Комментарий: {data.comment}
               </p>
               </div>
-              <Button variant="contained" onClick={pressHandler}>Добавить</Button>
               <div class="card-action">
         <Link to={`/detail/cloth/${data.article}`}>Ткань</Link>
         <Link to={`/detail/furniture/${data.article}`}>Фурнитура</Link>
+        <Link to={`/detail/images/${data.article}`}>Изображения</Link>
+        <Button variant="outlined" onClick={pressHandler}>Добавить</Button>
         </div>
             </div>
           </div>

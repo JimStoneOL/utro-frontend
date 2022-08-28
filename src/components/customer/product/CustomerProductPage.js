@@ -22,10 +22,10 @@ export const CustomerProductPage=()=>{
    return(
        <>
        <br/>
-       <button class="btn waves-effect waves-light" name="action" onClick={()=>setName('Создать продукт')}>Создать продукт</button>
-       <button class="btn waves-effect waves-light" name="action" onClick={()=>setName('Показать свои продукты')}>Показать свои продукты</button>
-       <button class="btn waves-effect waves-light" name="action" onClick={()=>setName('Показать готовые продукты')}>Показать готовые продукты</button>
-
+       <button class="btn-small waves-effect waves-light" style={{borderRadius:'50px',color:'black',marginRight:'20px',backgroundColor:'rgb(245, 237, 245)'}} name="action" onClick={()=>setName('Создать продукт')}><div className="txt">Создать продукт</div></button>
+       <button class="btn-small waves-effect waves-light" style={{borderRadius:'50px',color:'black',marginRight:'20px',backgroundColor:'rgb(245, 237, 245)'}} name="action" onClick={()=>setName('Показать свои продукты')}><div className="txt">Показать свои продукты</div></button>
+       <button class="btn-small waves-effect waves-light" style={{borderRadius:'50px',color:'black',backgroundColor:'rgb(245, 237, 245)'}} name="action" onClick={()=>setName('Показать готовые продукты')}><div className="txt">Показать готовые продукты</div></button>
+      <hr/>
         <ShowProduct/>
   
        </>

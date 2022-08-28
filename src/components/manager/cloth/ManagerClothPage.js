@@ -2,6 +2,7 @@
 import { ManagerCreateCloth } from "./ManagerCreateCloth";
 import { useState } from "react";
 import { ManagerLoadClothList } from "./ManagerLoadClothList";
+import '../../../utils/styles/font.css'
 
 export const ManagerClothPage=()=>{
 
@@ -20,7 +21,7 @@ export const ManagerClothPage=()=>{
     return(
         <>
         <br/>
-        <button class="btn waves-effect waves-light" name="action" onClick={()=>pressHandler()}>{name}</button>
+        <button class="btn-small waves-effect waves-light pink lighten-5" style={{borderRadius:'50px',color:'black'}} name="action" onClick={()=>pressHandler()}><div className="txt">{name}</div></button>
  {isCreate ? <ManagerCreateCloth/> : <ManagerLoadClothList/>}
    
         </>

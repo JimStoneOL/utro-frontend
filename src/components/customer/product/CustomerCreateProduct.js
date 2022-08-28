@@ -36,9 +36,7 @@ export const CustomerCreateProduct=()=>{
     getAllFurniture()
   } 
   const handleFurnitureClose = () => setFurnitureOpen(false);
-  const [furnitureProduct,setFurnitureProduct]=useState([{
-  //  productId:'',furnitureId:'',placement:'',width:null,length:null,turn:null,amount:null
-  }])
+  const [furnitureProduct,setFurnitureProduct]=useState([{}])
   const [clothProduct,setClothProduct]=useState([{}])
 
   const currencies = [
@@ -94,7 +92,7 @@ export const CustomerCreateProduct=()=>{
 
   const getAllFurniture = useCallback(async () => {
     try {
-      const fetched = await request('http://localhost:8080/api/furniture/get/all', 'GET', null, {
+      const fetched = await request('http://localhost:8080/api/furniture/bucket/get/all', 'GET', null, {
         Authorization: `Bearer ${token}`
       })
       setFurnitureData(fetched)
@@ -107,7 +105,7 @@ export const CustomerCreateProduct=()=>{
 
   const getAllCloth = useCallback(async () => {
     try {
-      const fetched = await request('http://localhost:8080/api/cloth/get/all', 'GET', null, {
+      const fetched = await request('http://localhost:8080/api/cloth/bucket/get/all', 'GET', null, {
         Authorization: `Bearer ${token}`
       })
       setClothData(fetched)
@@ -198,7 +196,7 @@ export const CustomerCreateProduct=()=>{
           }
         }
         )
-    
+        message('Продукт успешно создан '+productId)
     }catch(e){
         console.log('wrong')
     }
@@ -271,11 +269,11 @@ export const CustomerCreateProduct=()=>{
         <div className="row">
         <div className="">
           <div className="card center">
-            <div className='teal lighten-2'>
+            <div className='pink lighten-5'>
             <div className="card-content white-text">
-              <span className="card-title">Создание шаблонного продукта</span>
-              <div className="teal lighten-2">
-              <div className="input-field teal lighten-2">
+              <span className="card-title" style={{color:'rgb(105, 182, 204)'}}>Создание шаблонного продукта</span>
+              <div className="pink lighten-5">
+              <div className="input-field">
                   <input
                     placeholder="Введите название"
                     id="name"
@@ -300,7 +298,7 @@ export const CustomerCreateProduct=()=>{
                           </MenuItem>
                         ))}
                  </TextField>
-                  <div className="input-field teal lighten-2">
+                  <div className="input-field">
                   <input
                     placeholder="Введите ширину"
                     id="width"
@@ -311,7 +309,7 @@ export const CustomerCreateProduct=()=>{
                     onChange={changeHandler}
                   />
                   </div>
-                  <div className="input-field teal lighten-2">
+                  <div className="input-field">
                   <input
                     placeholder="Введите длину"
                     id="length"
@@ -322,12 +320,14 @@ export const CustomerCreateProduct=()=>{
                     onChange={changeHandler}
                   />
                   </div>
-                  <div className="teal lighten-0">
+                  <div className="">
                     <UploadControl onChange={handleAddBanner} accept="image/*">
-                    {file ? file.name : 'Добавить изображение'}
+                    <div style={{color:'rgb(105, 182, 204)',cursor:'pointer'}}>
+                     {file ? file.name : 'Добавить изображение'}
+                    </div>
                     </UploadControl>
                 </div>
-                  <div className="input-field teal lighten-2">
+                  <div className="input-field">
                   <input
                     placeholder="Оставьте комментарий"
                     id="comment"
@@ -380,7 +380,7 @@ export const CustomerCreateProduct=()=>{
             <div className="card-action">
               <button
                 className="btn own-button"
-                style={{marginRight: 10}}
+                style={{marginRight: 10,borderRadius:'50px'}}
                 onClick={createProductHandler}
               >
                 Создать

@@ -1,10 +1,18 @@
-import { MenuItem, TextField } from "@mui/material";
-import { useEffect, useState } from "react";
+import { Button, MenuItem, TextField } from "@mui/material";
+import { useCallback, useContext, useEffect, useState } from "react";
+import { Loader } from "../../../utils/component/Loader";
+import { AuthContext } from "../../../utils/context/AuthContext";
+import { useHttp } from "../../../utils/hooks/http.hook";
+import { useMessage } from "../../../utils/hooks/message.hook";
 
 export const CustomerCloth=({data})=>{
 
+  const {loading, request,error,clearError} = useHttp()
+  const {token} = useContext(AuthContext)
+  const message = useMessage()
   const [width,setWidth]=useState(data.width)
   const [length,setLength]=useState(data.length)
+  const [added,setAdded]=useState(false)
 
   const currencies = [
     {
@@ -47,6 +55,60 @@ export const CustomerCloth=({data})=>{
       
   },[currency,length,width])
 
+  const addClothToBucket=useCallback(async (article) => { 
+ 
+    try{
+      await request(`http://localhost:8080/api/cloth/bucket/create/${article}`, 'POST', null,{
+      Authorization: `Bearer ${token}`
+    })
+    setAdded(true)
+}catch(e){
+}
+},[token,request])
+
+const deleteClothBucket=useCallback(async (article) => { 
+        try{
+          await request(`http://localhost:8080/api/cloth/bucket/delete/${article}`, 'POST', null,{
+          Authorization: `Bearer ${token}`
+        })
+        setAdded(false)
+    }catch(e){
+    }
+},[token,request])
+
+
+const pressHandler = event => {
+
+console.log(added)
+
+if(added){
+ deleteClothBucket(data.article)
+ 
+}else{
+  addClothToBucket(data.article)
+}
+}
+
+const checkClothInBucket = useCallback(async () => {
+  try {
+    const fetched = await request(`http://localhost:8080/api/cloth/bucket/get/${data.article}`, 'GET', null, {
+      Authorization: `Bearer ${token}`
+    })
+    if(fetched.article===data.article){
+      setAdded(true)
+    }
+  } catch (e) {}
+}, [token, request])
+
+useEffect(() => {
+  checkClothInBucket()
+}, [checkClothInBucket])
+
+useEffect(() => {
+  message(error)
+  clearError()
+}, [error, message, clearError])
+
     return(
         <div class="col s12 m7" key={data.article}>
         <div class="card horizontal">
@@ -81,6 +143,9 @@ export const CustomerCloth=({data})=>{
             </p>
             </div>
           </div>
+          <Button variant="outlined" onClick={pressHandler}>
+            {added ? <i class="material-icons">remove_shopping_cart</i> : <i class="material-icons">add_shopping_cart</i>}
+            </Button>
         </div>
       </div>
     )

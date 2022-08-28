@@ -22,7 +22,7 @@ export const DirectorProductPage=()=>{
    return(
        <>
        <br/>
-       <button class="btn waves-effect waves-light" name="action" onClick={()=>pressHandler()}>{name}</button>
+       <button class="btn-small waves-effect waves-light pink lighten-5" style={{borderRadius:'50px',color:'black'}} name="action" onClick={()=>pressHandler()}><div className="txt">{name}</div></button>
 {isCreate ? <DirectorCreateProduct/> : <DirectorLoadProductList/>}
   
        </>

@@ -20,8 +20,6 @@ export const UserData=({dataList})=>{
           })
       
          data.imageBytes=fetched.imageBytes
-         //setTheObject(prevState => ({ ...prevState, currentOrNewKey: newValue}));
-        // setCloth(cloth=>({...cloth,data}))
           if(!(user.length===dataList.length+1)){
             user.push(data)
           }
@@ -29,21 +27,14 @@ export const UserData=({dataList})=>{
       },[token,request])
       
       useEffect(()=>{
-        dataList.map(data=>{
-          if(!(dataList.length+1===user.length)){
-          getImageByArticle(data)
+        const fetchData = async () => {
+          for (const item of dataList) {
+            await getImageByArticle(item);
           }
-        })
-      } ,[])
-      
-      var interval=setInterval(()=>{
-        if(user.length===dataList.length+1){
           setIsLoaded(true)
-          clearInterval(interval)
-        }else{
-          console.log('not loaded')
-        }
-      },1000)
+      }
+      fetchData();
+      } ,[])
 
       return(
         <>

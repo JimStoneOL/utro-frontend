@@ -3,6 +3,7 @@ import { AuthContext } from "../../../utils/context/AuthContext"
 import { useHttp } from "../../../utils/hooks/http.hook"
 import { DirectorClothList } from "./DirectorClothList"
 import { Loader } from "../../../utils/component/Loader"
+import { DirectorClothFilter } from "./DirectorClothFilter"
 
 export const DirectorLoadClothList=()=>{
 
@@ -23,6 +24,10 @@ export const DirectorLoadClothList=()=>{
       useEffect(() => {
         getAllCloths()
       }, [getAllCloths])
+
+      if(!(clothData.length>0) && !loading){
+        return <h6 className="center" style={{marginTop:'20%'}}>Пусто</h6>
+      }
       
       if (loading) {
         return <Loader/>
@@ -30,7 +35,7 @@ export const DirectorLoadClothList=()=>{
     
       return(<>
       
- {clothData && !loading && <DirectorClothList dataList={clothData}/>}
+ {clothData.length>0 && !loading && <DirectorClothFilter dataList={clothData}/>}
       
       </>)
 

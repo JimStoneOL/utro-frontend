@@ -4,10 +4,6 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { useCallback, useContext, useEffect, useState } from 'react';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import { useHttp } from '../../../utils/hooks/http.hook';
 import { AuthContext } from '../../../utils/context/AuthContext';
 import { Loader } from "../../../utils/component/Loader"
@@ -18,8 +14,9 @@ export const TakedManagerOrderCard=({data})=>{
 
     const [username,setUsername]=useState([])
 
-    const {loading, request} = useHttp()
+    const {loading, request,error,clearError} = useHttp()
     const {token} = useContext(AuthContext)
+    const message = useMessage()
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -55,6 +52,12 @@ export const TakedManagerOrderCard=({data})=>{
       if(stage==='STAGE_NEW'){
           return 'Новый'
       }
+      if(stage==='STAGE_CONFIRMED'){
+        return 'Оплаченный'
+      }
+      if(stage==='STAGE_ACCEPTED'){
+        return 'Принятый'
+      }
       if(stage==='STAGE_EXPECTATION'){
           return 'Ожидание'
       }
@@ -72,12 +75,14 @@ export const TakedManagerOrderCard=({data})=>{
   }
   }
 
-    const giveStage=useCallback(async (data) => { 
+    const giveStage=useCallback(async (form) => { 
 
       try{
-        await request('http://localhost:8080/api/order/update/stage', 'POST', data,{
+        const fetched=await request('http://localhost:8080/api/order/update/stage', 'POST', form,{
         Authorization: `Bearer ${token}`
       })
+      data.stage=fetched.stage
+      message('Стадия успешно обновлена')
   }catch(e){
       console.log()
   }
@@ -90,6 +95,11 @@ export const TakedManagerOrderCard=({data})=>{
       giveStage(stage)
     }
 
+    useEffect(() => {
+      message(error)
+      clearError()
+    }, [error, message, clearError])
+
     if (loading) {
       return <Loader/>
     }
@@ -98,8 +108,8 @@ export const TakedManagerOrderCard=({data})=>{
           <>
                 <div class="row">
       <div class="col s12 m6">
-        <div class="card blue-grey darken-1">
-          <div class="card-content white-text">
+        <div class="card">
+          <div class="card-content">
             <span class="card-title">Номер заказа {data.id}</span>
            <p>
                Этап: {getStage()} <br/>
@@ -110,7 +120,7 @@ export const TakedManagerOrderCard=({data})=>{
           <div class="card-action">
         <Link to={`/detail/order/${data.id}`}>Детали</Link>
 
-        <Button variant="contained" color="error" onClick={handleOpen}>Выбрать стадию</Button>
+        <Button variant="text" onClick={handleOpen}>Выбрать стадию</Button>
                         <Modal
                             open={open}
                             onClose={handleClose}

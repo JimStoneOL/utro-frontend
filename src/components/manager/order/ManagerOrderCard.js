@@ -3,10 +3,12 @@ import { useCallback, useContext, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { AuthContext } from "../../../utils/context/AuthContext"
 import { useHttp } from "../../../utils/hooks/http.hook"
+import { useMessage } from "../../../utils/hooks/message.hook"
 
 export const ManagerOrderCard=({data})=>{
 
-  const {loading, request} = useHttp()
+  const {loading, request,error,clearError} = useHttp()
+  const message = useMessage()
   const {token} = useContext(AuthContext)
   const [hidden,setHidden]=useState(false)
 
@@ -23,7 +25,7 @@ export const ManagerOrderCard=({data})=>{
       await request(`http://localhost:8080/api/order/add/manager/${orderId}`, 'POST', null,{
       Authorization: `Bearer ${token}`
     })
-
+    message('Успешно добавлен заказ')
     setHidden(true)
 
 }catch(e){
@@ -36,10 +38,21 @@ export const ManagerOrderCard=({data})=>{
     addManager(data.id)
   }
 
+  useEffect(() => {
+    message(error)
+    clearError()
+  }, [error, message, clearError])
+
   const getStage=()=>{
     let stage=data.stage
     if(stage==='STAGE_NEW'){
         return 'Новый'
+    }
+    if(stage==='STAGE_CONFIRMED'){
+      return 'Оплаченный'
+    }
+    if(stage==='STAGE_ACCEPTED'){
+      return 'Принятый'
     }
     if(stage==='STAGE_EXPECTATION'){
         return 'Ожидание'
@@ -63,8 +76,8 @@ export const ManagerOrderCard=({data})=>{
         <>
               <div class="row" hidden={hidden}>
     <div class="col s12 m6">
-      <div class="card blue-grey darken-1">
-        <div class="card-content white-text">
+      <div class="card">
+        <div class="card-content">
           <span class="card-title">Номер заказа {data.id}</span>
          <p>
              Этап: {getStage()} <br/>
@@ -74,7 +87,7 @@ export const ManagerOrderCard=({data})=>{
         </div>
         <div class="card-action">
       <Link to={`/detail/order/${data.id}`}>Детали</Link>
-      <Button color="error" onClick={pressHandler}>Добавить</Button>
+      <Button color="secondary" onClick={pressHandler}>Добавить</Button>
         </div>
       </div>
     </div>

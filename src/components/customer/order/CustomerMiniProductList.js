@@ -32,22 +32,15 @@ export const CustomerMiniProductList=({dataList,selectProduct})=>{
       },[token,request])
       
       useEffect(()=>{
-        dataList.map(data=>{
-          if(!(dataList.length+1===product.length)){
-          getImageByArticle(data)
+        const fetchData = async () => {
+          for (const item of dataList) {
+            await getImageByArticle(item);
           }
-        })
-      } ,[])
-      
-      var interval=setInterval(()=>{
-        if(product.length===dataList.length+1){
           setIsLoaded(true)
-          clearInterval(interval)
-        }else{
-          console.log('not loaded')
-        }
-      },1000)
-    
+       }
+       fetchData();
+      } ,[])
+         
     
       return(
         <>

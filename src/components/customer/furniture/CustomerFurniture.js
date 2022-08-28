@@ -1,10 +1,17 @@
-import { MenuItem, TextField } from "@mui/material";
-import { useEffect, useState } from "react";
+import { MenuItem, TextField,Button } from "@mui/material";
+import { useCallback, useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../../utils/context/AuthContext";
+import { useHttp } from "../../../utils/hooks/http.hook";
+import { useMessage } from "../../../utils/hooks/message.hook";
 
 export const CustomerFurniture=({data})=>{
 
+  const {loading, request,error,clearError} = useHttp()
+  const {token} = useContext(AuthContext)
+  const message = useMessage()
   const [width,setWidth]=useState(data.width)
   const [length,setLength]=useState(data.length)
+  const [added,setAdded]=useState(false)
 
   const currencies = [
     {
@@ -47,6 +54,59 @@ export const CustomerFurniture=({data})=>{
       
   },[currency,length,width])
 
+  const addFurnitureToBucket=useCallback(async (article) => { 
+ 
+    try{
+      await request(`http://localhost:8080/api/furniture/bucket/create/${article}`, 'POST', null,{
+      Authorization: `Bearer ${token}`
+    })
+    setAdded(true)
+}catch(e){
+}
+},[token,request])
+
+const deleteFurnitureBucket=useCallback(async (article) => { 
+        try{
+          await request(`http://localhost:8080/api/furniture/bucket/delete/${article}`, 'POST', null,{
+          Authorization: `Bearer ${token}`
+        })
+        setAdded(false)
+    }catch(e){
+    }
+},[token,request])
+
+
+const pressHandler = event => {
+
+
+if(added){
+ deleteFurnitureBucket(data.article)
+ 
+}else{
+  addFurnitureToBucket(data.article)
+}
+}
+
+const checkFurnitureInBucket = useCallback(async () => {
+  try {
+    const fetched = await request(`http://localhost:8080/api/furniture/bucket/get/${data.article}`, 'GET', null, {
+      Authorization: `Bearer ${token}`
+    })
+    if(fetched.article===data.article){
+      setAdded(true)
+    }
+  } catch (e) {}
+  }, [token, request])
+  
+  useEffect(() => {
+    checkFurnitureInBucket()
+  }, [checkFurnitureInBucket])
+  
+  useEffect(() => {
+  message(error)
+  clearError()
+  }, [error, message, clearError])
+
     return(
         <div class="col s12 m7">
         <div class="card horizontal">
@@ -80,6 +140,9 @@ export const CustomerFurniture=({data})=>{
             </p>
             </div>
           </div>
+          <Button variant="outlined" onClick={pressHandler}>
+            {added ? <i class="material-icons">remove_shopping_cart</i> : <i class="material-icons">add_shopping_cart</i>}
+            </Button>
         </div>
       </div>
     )

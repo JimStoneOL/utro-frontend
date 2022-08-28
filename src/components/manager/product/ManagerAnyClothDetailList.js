@@ -26,19 +26,14 @@ export const ManagerAnyClothDetailList=({dataList})=>{
       },[token,request])
       
       useEffect(()=>{
-        dataList.map((data,i)=>{
-            if(!(dataList.length+1===cloth.length)){
-          getClothByArticle(data)
-            }
-        })
-      } ,[])
-      
-      var interval=setInterval(()=>{
-        if(cloth.length===dataList.length+1){
+        const fetchData = async () => {
+          for (const item of dataList) {
+            await getClothByArticle(item);
+          }
           setIsLoaded(true)
-          clearInterval(interval)
-        }
-      },1000)
+      }
+      fetchData();
+      } ,[])
 
 
     return(

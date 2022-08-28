@@ -21,7 +21,7 @@ export const DirectorClothPage=()=>{
     return(
         <>
         <br/>
-        <button class="btn waves-effect waves-light" name="action" onClick={()=>pressHandler()}>{name}</button>
+        <button class="btn-small waves-effect waves-light" style={{borderRadius:'50px',color:'black',marginRight:'20px',backgroundColor:'rgb(245, 237, 245)'}} name="action" onClick={()=>pressHandler()}><div className="txt">{name}</div></button>
  {isCreate ? <DirectorCreateCloth/> : <DirectorLoadClothList/>}
    
         </>

@@ -23,6 +23,10 @@ export const DirectorOrderList=()=>{
   useEffect(() => {
     getAllOrders()
   }, [getAllOrders])
+
+  if(!(orders.length>0) && !loading){
+    return <h6 className="center" style={{marginTop:'20%'}}>Пусто</h6>
+  }
   
   if (loading) {
     return <Loader/>

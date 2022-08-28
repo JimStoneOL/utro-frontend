@@ -3,6 +3,7 @@ import { AuthPage } from "../../components/auth/screen/AuthPage"
 import { RegisterPage } from "../../components/auth/screen/RegisterPage"
 import { CustomerClothPage } from "../../components/customer/cloth/CustomerClothPage"
 import { CustomerHome } from "../../components/customer/CustomerHome"
+import { CustomerEmailCreate } from "../../components/customer/email/CustomerEmailCreate"
 import { CustomerFurniturePage } from "../../components/customer/furniture/CustomerFurniturePage"
 import { CustomerOrderDetail } from "../../components/customer/order/CustomerOrderDetail"
 import { CustomerOrderPage } from "../../components/customer/order/CustomerOrderPage"
@@ -12,10 +13,13 @@ import { CustomerFurniture } from "../../components/customer/product/CustomerFur
 import { CustomerFurnitureProduct } from "../../components/customer/product/CustomerFurnitureProduct"
 import { CustomerMyClothProduct } from "../../components/customer/product/CustomerMyClothProduct"
 import { CustomerMyFurnitureProduct } from "../../components/customer/product/CustomerMyFurnitureProduct"
+import { CustomerMyProductImageRepository } from "../../components/customer/product/CustomerMyProductImageRepository"
+import { CustomerProductImageRepository } from "../../components/customer/product/CustomerProductImageRepository"
 import { CustomerProductPage } from "../../components/customer/product/CustomerProductPage"
 import { CustomerProfilePage } from "../../components/customer/profile/CustomerProfilePage"
 import { DirectorClothPage } from "../../components/director/cloth/DirectorClothPage"
 import { DirectorHome } from "../../components/director/DirectorHome"
+import { DirectorEmailCreate } from "../../components/director/email/DirectorEmailCreate"
 import { DirectorFurniturePage } from "../../components/director/furniture/DirectorFurniturePage"
 import { DirectorOrderDetail } from "../../components/director/order/DirectorOrderDetail"
 import { DirectorOrderList } from "../../components/director/order/DirectorOrderList"
@@ -31,6 +35,8 @@ import { DirectorProfilePage } from "../../components/director/profile/DirectorP
 import { ReportPage } from "../../components/director/report/ReportPage"
 import { UserPage } from "../../components/director/users/UserPage"
 import { ManagerClothPage } from "../../components/manager/cloth/ManagerClothPage"
+import { ManagerEmailCreate } from "../../components/manager/email/ManagerEmailCreate"
+import { ManagerEmailLoadList } from "../../components/manager/email/ManagerEmailLoadList"
 import { ManagerFurniturePage } from "../../components/manager/furniture/ManagerFurniturePage"
 import { ManagerHome } from "../../components/manager/ManagerHome"
 import { ManagerOrderDetail } from "../../components/manager/order/ManagerOrderDetail"
@@ -38,9 +44,11 @@ import { ManagerOrderPage } from "../../components/manager/order/ManagerOrderPag
 import { ManagerProduct } from "../../components/manager/order/ManagerProduct"
 import { ManagerAnyClothProduct } from "../../components/manager/product/ManagerAnyClothProduct"
 import { ManagerAnyFurnitureProduct } from "../../components/manager/product/ManagerAnyFurnitureProduct"
+import { ManagerAnyProductImageRepository } from "../../components/manager/product/ManagerAnyProductImageRepository"
 import { ManagerClothProduct } from "../../components/manager/product/ManagerClothProduct"
 import { ManagerFurniture } from "../../components/manager/product/ManagerFurniture"
 import { ManagerFurnitureProduct } from "../../components/manager/product/ManagerFurnitureProduct"
+import { ManagerProductImageRepository } from "../../components/manager/product/ManagerProductImageRepository"
 import { ManagerProductList } from "../../components/manager/product/ManagerProductList"
 import { ManagerProductPage } from "../../components/manager/product/ManagerProductPage"
 import { ManagerProfilePage } from "../../components/manager/profile/ManagerProfilePage"
@@ -53,6 +61,7 @@ import { StorekeeperProductList } from "../../components/storekeeper/product/Sto
 import { StorekeeperProfilePage } from "../../components/storekeeper/profile/StorekeeperProfilePage"
 import { StorekeeperHome } from "../../components/storekeeper/StorekeeperHome"
 import { AboutPage } from "../component/About"
+import { BucketPage } from "../component/bucket/BucketPage"
 import { ProfilePage } from "../component/profile/ProfilePage"
 
 
@@ -91,6 +100,12 @@ export const useRoutes=(isAuthenticated,role)=>{
                <Route path="/my/detail/furniture/:id">
                         <CustomerMyFurnitureProduct />
                </Route>
+               <Route path="/detail/images/:id">
+                    <CustomerProductImageRepository />
+                </Route>
+                <Route path="/my/detail/images/:id">
+                    <CustomerMyProductImageRepository />
+                </Route>
                 <Route path="/cloth">
                     <CustomerClothPage/>
                 </Route>
@@ -105,6 +120,12 @@ export const useRoutes=(isAuthenticated,role)=>{
                 </Route>
                 <Route path="/profile">
                     <ProfilePage/>
+                </Route>
+                <Route path="/bucket">
+                    <BucketPage/>
+                </Route>
+                <Route path="/email">
+                    <CustomerEmailCreate/>
                 </Route>
                 <Redirect to="/" />
         </Switch>
@@ -162,6 +183,12 @@ export const useRoutes=(isAuthenticated,role)=>{
             <Route path="/report">
                 <ReportPage/>
             </Route>
+            <Route path="/bucket">
+                    <BucketPage/>
+                </Route>
+                <Route path="/email">
+                    <DirectorEmailCreate/>
+                </Route>
         
             <Redirect to="/" />
     </Switch>
@@ -180,7 +207,7 @@ export const useRoutes=(isAuthenticated,role)=>{
          <Route path="/detail/order/:id" >
                     <ManagerOrderDetail/>
                 </Route>
-         <Route path="/product">
+         <Route path="/product" exact>
                 <ManagerProductPage/>
             </Route>
             <Route path="/detail/product/:id">
@@ -198,6 +225,9 @@ export const useRoutes=(isAuthenticated,role)=>{
                 <Route path="/any/detail/furniture/:id">
                     <ManagerAnyFurnitureProduct />
                 </Route>
+                <Route path="/any/detail/images/:id">
+                    <ManagerAnyProductImageRepository />
+                </Route>
         <Route path="/cloth">
             <ManagerClothPage/>
         </Route>
@@ -213,6 +243,15 @@ export const useRoutes=(isAuthenticated,role)=>{
         <Route path="/profile">
                 <ProfilePage/>
             </Route>
+            <Route path="/bucket">
+                    <BucketPage/>
+                </Route>
+                <Route path="/product/images/:id">
+                    <ManagerProductImageRepository/>
+                </Route>
+                <Route path="/email">
+                    <ManagerEmailCreate/>
+                </Route>
       <Redirect to="/" />
     </Switch>
     )
@@ -242,6 +281,9 @@ export const useRoutes=(isAuthenticated,role)=>{
             <Route path="/profile">
                 <ProfilePage/>
             </Route>
+            <Route path="/bucket">
+                    <BucketPage/>
+                </Route>
           <Redirect to="/" />
         </Switch>
     )

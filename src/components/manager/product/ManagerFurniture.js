@@ -33,7 +33,7 @@ export const ManagerFurniture=()=>{
 
     return(
         <>
-        {!loading && furniture ? <ManagerFurnitureImage data={furniture}/> : <div>Фурнитура не найдена</div>}
+        {!loading && furniture ? <ManagerFurnitureImage data={furniture}/> : <h6 className="center" style={{marginTop:'20%'}}>Фурнитура не найдена</h6>}
         </>
     )
 }

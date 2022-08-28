@@ -1,16 +1,44 @@
 import { Button, MenuItem, TextField } from "@mui/material"
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
 import { useContext, useEffect, useState } from "react"
 import { Link, NavLink } from "react-router-dom"
 import { AuthContext } from "../../../utils/context/AuthContext"
 import { useHttp } from "../../../utils/hooks/http.hook"
+import { DirectorUpdateProduct } from "./DirectorUpdateProduct";
+import { DirectorChangeDetail } from "./DirectorChangeDetail";
+import { useMessage } from "../../../utils/hooks/message.hook";
 
 export const DirectorProduct=({data})=>{
 
   const {token} = useContext(AuthContext)
-  const {request,loading} = useHttp()
+  const {request,loading,error,clearError} = useHttp()
+  const [deleted,setDeleted]=useState(false)
+  const message = useMessage()
 
   const [width,setWidth]=useState(data.width)
   const [length,setLength]=useState(data.length)
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const [openDetail, setOpenDetail] = useState(false);
+  const handleOpenDetail = () => setOpenDetail(true);
+  const handleCloseDetail = () => setOpenDetail(false);
+
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };
 
   const currencies = [
     {
@@ -58,9 +86,19 @@ export const DirectorProduct=({data})=>{
       const fetch = await request(`http://localhost:8080/api/product/template/delete/${data.article}`, 'POST', null,{
         Authorization: `Bearer ${token}`
       })
+      setDeleted(true)
+      message('Шаблонный продукт успешно удалён')
     }catch(e){}
   }
 
+  useEffect(() => {
+    message(error)
+    clearError()
+  }, [error, message, clearError])
+
+  if(deleted){
+    return(<></>)
+  }
 
     return(
         <>
@@ -96,7 +134,37 @@ export const DirectorProduct=({data})=>{
               <div class="card-action">
         <Link to={`/detail/cloth/${data.article}`}>Ткань</Link>
         <Link to={`/detail/furniture/${data.article}`}>Фурнитура</Link>
+        <Link to={`/product/images/${data.article}`}>Изображения</Link>
         <Button variant="outlined" onClick={deleteHandler}>Удалить</Button>
+
+        <Button variant="outlined" onClick={handleOpen} style={{marginLeft:'10px'}}>Обновить</Button>
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box sx={style}>
+                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                 <DirectorUpdateProduct data={data}/>
+                </Typography>
+              </Box>
+            </Modal>
+
+
+            <Button variant="outlined" onClick={handleOpenDetail} style={{marginLeft:'10px'}}>Изменить детали</Button>
+            <Modal
+              open={openDetail}
+              onClose={handleCloseDetail}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box sx={style}>
+                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                 <DirectorChangeDetail productId={data.article}/>
+                </Typography>
+              </Box>
+            </Modal>
         </div>
             </div>
           </div>

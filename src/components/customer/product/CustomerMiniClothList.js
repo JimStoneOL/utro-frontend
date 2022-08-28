@@ -31,22 +31,15 @@ export const CustomerMiniClothList=({dataList,selectCloth})=>{
       },[token,request])
       
       useEffect(()=>{
-        dataList.map(data=>{
-          if(!(dataList.length===cloth.length)){
-          getImageByArticle(data)
+        const fetchData = async () => {
+          for (const item of dataList) {
+            await getImageByArticle(item);
           }
-        })
+          setIsLoaded(true)
+       }
+       fetchData();
       } ,[])
       
-      var interval=setInterval(()=>{
-        if(cloth.length===dataList.length+1){
-          setIsLoaded(true)
-          clearInterval(interval)
-        }else{
-          console.log('not loaded')
-        }
-      },1000)
-    
     
       return(
         <>

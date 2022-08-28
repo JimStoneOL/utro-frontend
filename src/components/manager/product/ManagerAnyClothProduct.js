@@ -39,7 +39,7 @@ export const ManagerAnyClothProduct=()=>{
 
     return(
         <>
-        {!loading && clothProduct ? <ManagerAnyClothDetailList dataList={clothProduct}/> : <div>Ткани продукта не найдены</div>}
+        {!loading && clothProduct ? <ManagerAnyClothDetailList dataList={clothProduct}/> : <h6 className="center" style={{marginTop:'20%'}}>Ткани продукта не найдены</h6>}
         </>
     )
 }

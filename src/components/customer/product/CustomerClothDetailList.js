@@ -27,20 +27,15 @@ export const CustomerClothDetailList=({dataList})=>{
       },[token,request])
       
       useEffect(()=>{
-        dataList.map((data,i)=>{
-            if(!(dataList.length+1===cloth.length)){
-          getClothByArticle(data)
-            }
-        })
+        const fetchData = async () => {
+          for (const item of dataList) {
+            await getClothByArticle(item);
+          }
+          setIsLoaded(true)
+      }
+      fetchData();
       } ,[])
       
-      var interval=setInterval(()=>{
-        if(cloth.length===dataList.length+1){
-          setIsLoaded(true)
-          clearInterval(interval)
-        }
-      },1000)
-
 
     return(
         <>

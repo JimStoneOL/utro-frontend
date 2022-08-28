@@ -25,22 +25,16 @@ export const DirectorFurnitureList=({dataList})=>{
     } catch (e) {}
   },[token,request])
   
-  useEffect(()=>{
-    dataList.map(data=>{
-      if(!(dataList.length+1===furniture.length)){
-      getImageByArticle(data)
-      }
-    })
-  } ,[])
   
-  var interval=setInterval(()=>{
-    if(furniture.length===dataList.length+1){
+  useEffect(()=>{
+    const fetchData = async () => {
+      for (const item of dataList) {
+        await getImageByArticle(item);
+      }
       setIsLoaded(true)
-      clearInterval(interval)
-    }else{
-      console.log('not loaded')
-    }
-  },1000)
+  }
+  fetchData();
+  } ,[])
 
 
   return(
