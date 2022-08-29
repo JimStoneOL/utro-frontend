@@ -16,7 +16,6 @@ export const ManagerEmailCard=({data})=>{
         return 'приватное сообщение'
     }
   }
-   (data)
     return(<>
   <Card sx={{ minWidth: 275 }} key={data.id}>
     <CardContent>
