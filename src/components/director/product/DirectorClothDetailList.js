@@ -15,7 +15,7 @@ export const DirectorClothDetailList=({dataList})=>{
     const getClothByArticle= useCallback(async (data) => {
         try {
         
-          const fetched = await request(`http://localhost:8080/api/cloth/get/${data.clothId}`, 'GET', null, {
+          const fetched = await request(`https://morning-production-app.herokuapp.com/api/cloth/get/${data.clothId}`, 'GET', null, {
             Authorization: `Bearer ${token}`
           })
           if(!(dataList.length+1===cloth.length)){

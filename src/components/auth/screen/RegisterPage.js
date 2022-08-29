@@ -31,7 +31,7 @@ export const RegisterPage=()=>{
 
   const registerHandler = async () => {
     try {
-      const data = await request('http://localhost:8080/api/auth/signup', 'POST', {...form})
+      const data = await request('https://morning-production-app.herokuapp.com/api/auth/signup', 'POST', {...form})
   
       message(data.message)
     } catch (e) {}

@@ -15,7 +15,7 @@ export const CustomerClothPage=()=>{
 
   const getAllCloths = useCallback(async () => {
     try {
-      const fetched = await request('http://localhost:8080/api/cloth/get/all', 'GET', null, {
+      const fetched = await request('https://morning-production-app.herokuapp.com/api/cloth/get/all', 'GET', null, {
         Authorization: `Bearer ${token}`
       })
       setClothData(fetched)

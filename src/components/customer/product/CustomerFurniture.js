@@ -19,7 +19,7 @@ export const CustomerFurniture=()=>{
     const getFurnitureByArticle= useCallback(async (data) => {
         try {
         
-          const fetched = await request(`http://localhost:8080/api/furniture/get/${furnitureId}`, 'GET', null, {
+          const fetched = await request(`https://morning-production-app.herokuapp.com/api/furniture/get/${furnitureId}`, 'GET', null, {
             Authorization: `Bearer ${token}`
           })
            (fetched)

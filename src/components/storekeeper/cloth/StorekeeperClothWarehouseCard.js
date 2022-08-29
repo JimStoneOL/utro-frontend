@@ -111,7 +111,7 @@ export const StorekeeperClothWarehouseCard=({data})=>{
     }
 
       try {
-        const fetch = await request('http://localhost:8080/api/cloth/warehouse/update', 'POST', {...form},{
+        const fetch = await request('https://morning-production-app.herokuapp.com/api/cloth/warehouse/update', 'POST', {...form},{
           Authorization: `Bearer ${token}`
         })
         data.length=fetch.length
@@ -122,7 +122,7 @@ export const StorekeeperClothWarehouseCard=({data})=>{
     const deleteHandler=async event=>{
       let obj
       try {
-        const fetched = await request(`http://localhost:8080/api/cloth/warehouse/delete/${data.id}`, 'POST', null,{
+        const fetched = await request(`https://morning-production-app.herokuapp.com/api/cloth/warehouse/delete/${data.id}`, 'POST', null,{
           Authorization: `Bearer ${token}`
         })
         message('Успешно удалено')

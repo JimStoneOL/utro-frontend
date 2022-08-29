@@ -18,7 +18,7 @@ export const NotTakedCustomerOrderList=()=>{
 
   const getAllOrders = useCallback(async () => {
     try {
-      const fetched = await request('http://localhost:8080/api/order/get/notTaken/all', 'GET', null, {
+      const fetched = await request('https://morning-production-app.herokuapp.com/api/order/get/notTaken/all', 'GET', null, {
         Authorization: `Bearer ${token}`
       })
       setOrders(fetched)

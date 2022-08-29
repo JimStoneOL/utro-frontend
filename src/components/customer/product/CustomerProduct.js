@@ -56,7 +56,7 @@ export const CustomerProduct=({data})=>{
 
   const getPriceForProduct = useCallback(async () => {
     try {
-      const fetched = await request(`http://localhost:8080/api/product/price/${data.article}`, 'GET', null, {
+      const fetched = await request(`https://morning-production-app.herokuapp.com/api/product/price/${data.article}`, 'GET', null, {
         Authorization: `Bearer ${token}`
       })
         setPrice(fetched)
@@ -70,7 +70,7 @@ export const CustomerProduct=({data})=>{
 
   const addToMyself= useCallback(async (article) => {
     try {
-        await request(`http://localhost:8080/api/product/template/add/${article}`, 'POST', null, {
+        await request(`https://morning-production-app.herokuapp.com/api/product/template/add/${article}`, 'POST', null, {
         Authorization: `Bearer ${token}`
       })
       

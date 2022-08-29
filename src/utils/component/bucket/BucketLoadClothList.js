@@ -14,7 +14,7 @@ export const BucketLoadClothList=()=>{
 
   const getAllCloths = useCallback(async () => {
     try {
-      const fetched = await request('http://localhost:8080/api/cloth/bucket/get/all', 'GET', null, {
+      const fetched = await request('https://morning-production-app.herokuapp.com/api/cloth/bucket/get/all', 'GET', null, {
         Authorization: `Bearer ${token}`
       })
       setClothData(fetched)
@@ -27,7 +27,7 @@ export const BucketLoadClothList=()=>{
 
   const deleteAllClothBucket=useCallback(async () => { 
         try{
-          await request('http://localhost:8080/api/cloth/bucket/delete/all', 'POST', null,{
+          await request('https://morning-production-app.herokuapp.com/api/cloth/bucket/delete/all', 'POST', null,{
           Authorization: `Bearer ${token}`
         })
         getAllCloths()

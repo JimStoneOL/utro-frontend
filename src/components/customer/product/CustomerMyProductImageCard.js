@@ -13,7 +13,7 @@ export const CustomerMyProductImageCard=({data,productId,update})=>{
 
   const deleteTemplateProductImage=useCallback(async (productId,id) => { 
     try{
-      await request(`http://localhost:8080/api/product/image/repository/delete/${productId}/${id}`, 'POST', null,{
+      await request(`https://morning-production-app.herokuapp.com/api/product/image/repository/delete/${productId}/${id}`, 'POST', null,{
       Authorization: `Bearer ${token}`
       })
       update()

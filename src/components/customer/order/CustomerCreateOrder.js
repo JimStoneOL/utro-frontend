@@ -36,7 +36,7 @@ export const CustomerCreateOrder=()=>{
 
   const getAllProduct = useCallback(async () => {
     try {
-      const fetched = await request('http://localhost:8080/api/product/get/all', 'GET', null, {
+      const fetched = await request('https://morning-production-app.herokuapp.com/api/product/get/all', 'GET', null, {
         Authorization: `Bearer ${token}`
       })
       setProduct(fetched)
@@ -99,7 +99,7 @@ export const CustomerCreateOrder=()=>{
     }
     let orderId
     try{
-      const data=await request('http://localhost:8080/api/order/create', 'POST',null,{
+      const data=await request('https://morning-production-app.herokuapp.com/api/order/create', 'POST',null,{
         Authorization: `Bearer ${token}`
       })
       orderId=data.id
@@ -110,14 +110,14 @@ export const CustomerCreateOrder=()=>{
     }catch(e){}
 
       try{
-      const responseMessage=await request(`http://localhost:8080/api/order/delete/aftermath/${orderId}`, 'POST',null,{
+      const responseMessage=await request(`https://morning-production-app.herokuapp.com/api/order/delete/aftermath/${orderId}`, 'POST',null,{
         Authorization: `Bearer ${token}`
       })
       message(responseMessage.message)
     }catch(e){}
 
     try{
-      const updated=await request(`http://localhost:8080/api/order/update/${orderId}`, 'POST',null,{
+      const updated=await request(`https://morning-production-app.herokuapp.com/api/order/update/${orderId}`, 'POST',null,{
         Authorization: `Bearer ${token}`
       })
       setCreatedOrder(updated)
@@ -126,7 +126,7 @@ export const CustomerCreateOrder=()=>{
 
   const sendOrderedProduct=useCallback(async (data) => {
 
-    const fetch=await request('http://localhost:8080/api/order/product/create', 'POST', data,{
+    const fetch=await request('https://morning-production-app.herokuapp.com/api/order/product/create', 'POST', data,{
       Authorization: `Bearer ${token}`
     })
     const form={

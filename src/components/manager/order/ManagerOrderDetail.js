@@ -15,13 +15,13 @@ export const ManagerOrderDetail=()=>{
 
     const getOrderedProduct = useCallback(async () => {
         try {
-          const orderedProductFetched = await request(`http://localhost:8080/api/order/product/get/any/order/${orderId}`, 'GET', null, {
+          const orderedProductFetched = await request(`https://morning-production-app.herokuapp.com/api/order/product/get/any/order/${orderId}`, 'GET', null, {
             Authorization: `Bearer ${token}`
           })
           if(orderedProductFetched.length===0){
             setOrderedProduct(null)
         }else{
-             ('выполнен')
+             
             setOrderedProduct(orderedProductFetched)
         }
           

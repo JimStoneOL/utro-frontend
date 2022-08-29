@@ -29,7 +29,7 @@ export const CustomerMyProductImageRepository=()=>{
           formData.append("file",loadedImage)
   
           try{
-              axios.post(`http://localhost:8080/api/product/image/repository/upload/${productId}`,formData,{
+              axios.post(`https://morning-production-app.herokuapp.com/api/product/image/repository/upload/${productId}`,formData,{
                   headers:{
                     'Authorization':`Bearer ${token}`,
                     'Content-Type':'multipart/form-data'
@@ -51,7 +51,7 @@ export const CustomerMyProductImageRepository=()=>{
 
     const getAllProductImages = useCallback(async () => {
         try {
-          const fetched = await request(`http://localhost:8080/api/product/image/repository/get/${productId}`, 'GET', null, {
+          const fetched = await request(`https://morning-production-app.herokuapp.com/api/product/image/repository/get/${productId}`, 'GET', null, {
             Authorization: `Bearer ${token}`
           })
           setProductImage(fetched)

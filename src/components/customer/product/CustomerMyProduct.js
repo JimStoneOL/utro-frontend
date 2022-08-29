@@ -84,7 +84,7 @@ export const CustomerMyProduct=({data})=>{
 
   const getPriceForProduct = useCallback(async () => {
     try {
-      const fetched = await request(`http://localhost:8080/api/product/price/${data.article}`, 'GET', null, {
+      const fetched = await request(`https://morning-production-app.herokuapp.com/api/product/price/${data.article}`, 'GET', null, {
         Authorization: `Bearer ${token}`
       })
         setPrice(fetched)
@@ -102,7 +102,7 @@ export const CustomerMyProduct=({data})=>{
 
   const deleteHandler=async event=>{
     try {
-      const fetch = await request(`http://localhost:8080/api/product/delete/${data.article}`, 'POST', null,{
+      const fetch = await request(`https://morning-production-app.herokuapp.com/api/product/delete/${data.article}`, 'POST', null,{
         Authorization: `Bearer ${token}`
       })
       setDeleted(true)
@@ -112,7 +112,7 @@ export const CustomerMyProduct=({data})=>{
 
   const checkProductInOrder = useCallback(async () => {
     try {
-      const fetched = await request(`http://localhost:8080/api/product/orderCheck/${data.article}`, 'GET', null, {
+      const fetched = await request(`https://morning-production-app.herokuapp.com/api/product/orderCheck/${data.article}`, 'GET', null, {
         Authorization: `Bearer ${token}`
       })
       if(fetched.message==='true'){

@@ -14,7 +14,7 @@ export const Profile=()=>{
 
   const profileInfo = useCallback(async () => {
     try {
-      const fetched = await request('http://localhost:8080/api/user/get/profile', 'GET', null, {
+      const fetched = await request('https://morning-production-app.herokuapp.com/api/user/get/profile', 'GET', null, {
         Authorization: `Bearer ${token}`
       })
       setUserData(fetched)
@@ -27,7 +27,7 @@ export const Profile=()=>{
 
   const avatar = useCallback(async () => {
     try {
-      const fetched = await request('http://localhost:8080/api/image/get/avatar', 'GET', null, {
+      const fetched = await request('https://morning-production-app.herokuapp.com/api/image/get/avatar', 'GET', null, {
         Authorization: `Bearer ${token}`
       })
       setImg(fetched)

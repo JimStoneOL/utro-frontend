@@ -14,7 +14,7 @@ export const BucketLoadFurnitureList=()=>{
 
     const getAllFurniture = useCallback(async () => {
         try {
-          const fetched = await request('http://localhost:8080/api/furniture/bucket/get/all', 'GET', null, {
+          const fetched = await request('https://morning-production-app.herokuapp.com/api/furniture/bucket/get/all', 'GET', null, {
             Authorization: `Bearer ${token}`
           })
           setFurnitureData(fetched)
@@ -28,7 +28,7 @@ export const BucketLoadFurnitureList=()=>{
   
       const deleteAllFurnitureBucket=useCallback(async () => { 
         try{
-          await request('http://localhost:8080/api/furniture/bucket/delete/all', 'POST', null,{
+          await request('https://morning-production-app.herokuapp.com/api/furniture/bucket/delete/all', 'POST', null,{
           Authorization: `Bearer ${token}`
         })
         getAllFurniture()

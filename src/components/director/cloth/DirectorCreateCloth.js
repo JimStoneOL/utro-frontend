@@ -57,14 +57,14 @@ export const DirectorCreateCloth=()=>{
 
     let clothArticle;
       try {
-        const data = await request('http://localhost:8080/api/cloth/create', 'POST', {...form},{
+        const data = await request('https://morning-production-app.herokuapp.com/api/cloth/create', 'POST', {...form},{
           Authorization: `Bearer ${token}`
         })
         clothArticle=data.article
         message('Ткань успешно создана '+clothArticle)
       }catch(e){}
       try{
-        axios.post(`http://localhost:8080/api/image/upload/cloth/${clothArticle}`,formData,{
+        axios.post(`https://morning-production-app.herokuapp.com/api/image/upload/cloth/${clothArticle}`,formData,{
           headers:{
             'Authorization':`Bearer ${token}`,
             'Content-Type':'multipart/form-data'
@@ -100,7 +100,7 @@ export const DirectorCreateCloth=()=>{
 
     return(
         <>
-        <img src="data:image/jpeg;base64,http://localhost:8080/api/image/get/media"/>
+        <img src="data:image/jpeg;base64,https://morning-production-app.herokuapp.com/api/image/get/media"/>
            <div className="row">
         <div className="">
           <div className="card center">

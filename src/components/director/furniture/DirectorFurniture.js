@@ -60,7 +60,7 @@ export const DirectorFurniture=({data,update})=>{
   const addFurnitureToBucket=useCallback(async (article) => { 
  
     try{
-      await request(`http://localhost:8080/api/furniture/bucket/create/${article}`, 'POST', null,{
+      await request(`https://morning-production-app.herokuapp.com/api/furniture/bucket/create/${article}`, 'POST', null,{
       Authorization: `Bearer ${token}`
     })
     setAdded(true)
@@ -70,7 +70,7 @@ export const DirectorFurniture=({data,update})=>{
 
 const deleteFurnitureBucket=useCallback(async (article) => { 
         try{
-          await request(`http://localhost:8080/api/furniture/bucket/delete/${article}`, 'POST', null,{
+          await request(`https://morning-production-app.herokuapp.com/api/furniture/bucket/delete/${article}`, 'POST', null,{
           Authorization: `Bearer ${token}`
         })
         setAdded(false)
@@ -92,7 +92,7 @@ if(added){
 
 const deleteFurniture=useCallback(async (article) => { 
 try{
-  await request(`http://localhost:8080/api/furniture/delete/${article}`, 'POST', null,{
+  await request(`https://morning-production-app.herokuapp.com/api/furniture/delete/${article}`, 'POST', null,{
   Authorization: `Bearer ${token}`
 })
 setDeleted(true)
@@ -107,7 +107,7 @@ const deletePressHandler=event=>{
 
 const checkFurnitureInBucket = useCallback(async () => {
 try {
-  const fetched = await request(`http://localhost:8080/api/furniture/bucket/get/${data.article}`, 'GET', null, {
+  const fetched = await request(`https://morning-production-app.herokuapp.com/api/furniture/bucket/get/${data.article}`, 'GET', null, {
     Authorization: `Bearer ${token}`
   })
   if(fetched.article===data.article){

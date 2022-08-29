@@ -72,7 +72,7 @@ export const CustomerChangeDetail=({productId})=>{
 
   const getAllFurniture = useCallback(async () => {
     try {
-      const fetched = await request('http://localhost:8080/api/furniture/bucket/get/all', 'GET', null, {
+      const fetched = await request('https://morning-production-app.herokuapp.com/api/furniture/bucket/get/all', 'GET', null, {
         Authorization: `Bearer ${token}`
       })
       setFurnitureData(fetched)
@@ -85,7 +85,7 @@ export const CustomerChangeDetail=({productId})=>{
 
   const getAllCloth = useCallback(async () => {
     try {
-      const fetched = await request('http://localhost:8080/api/cloth/bucket/get/all', 'GET', null, {
+      const fetched = await request('https://morning-production-app.herokuapp.com/api/cloth/bucket/get/all', 'GET', null, {
         Authorization: `Bearer ${token}`
       })
       setClothData(fetched)
@@ -99,7 +99,7 @@ export const CustomerChangeDetail=({productId})=>{
 
   const sendClothProduct=useCallback(async (data) => {
 
-    await request('http://localhost:8080/api/cloth/product/create', 'POST', data,{
+    await request('https://morning-production-app.herokuapp.com/api/cloth/product/create', 'POST', data,{
       Authorization: `Bearer ${token}`
     })
   
@@ -107,7 +107,7 @@ export const CustomerChangeDetail=({productId})=>{
 
   const sendFurnitureProduct=useCallback(async (data) => {
 
-    await request('http://localhost:8080/api/furniture/product/create', 'POST', data,{
+    await request('https://morning-production-app.herokuapp.com/api/furniture/product/create', 'POST', data,{
       Authorization: `Bearer ${token}`
     })
   },[token,request])
@@ -115,13 +115,11 @@ export const CustomerChangeDetail=({productId})=>{
   const updateDetailHandler=async event=>{
     //------------------------------------------------------------------------------------------------
     try{
-       (productId)
-
-      await request(`http://localhost:8080/api/cloth/product/delete/product/${productId}`, 'POST', null,{
+      await request(`https://morning-production-app.herokuapp.com/api/cloth/product/delete/product/${productId}`, 'POST', null,{
         Authorization: `Bearer ${token}`
       })
 
-      await request(`http://localhost:8080/api/furniture/product/delete/product/${productId}`, 'POST', null,{
+      await request(`https://morning-production-app.herokuapp.com/api/furniture/product/delete/product/${productId}`, 'POST', null,{
         Authorization: `Bearer ${token}`
       })
 
@@ -140,7 +138,7 @@ export const CustomerChangeDetail=({productId})=>{
       update()
       message('Детали успешно изменены')
     }catch(e){
-         ('wrong')
+         
         update()
     }
   }

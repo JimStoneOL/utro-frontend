@@ -53,7 +53,7 @@ export const BucketFurnitureCard=({data,update})=>{
 
     const deleteFurnitureBucket=useCallback(async (article) => { 
       try{
-        await request(`http://localhost:8080/api/furniture/bucket/delete/${article}`, 'POST', null,{
+        await request(`https://morning-production-app.herokuapp.com/api/furniture/bucket/delete/${article}`, 'POST', null,{
         Authorization: `Bearer ${token}`
       })
       update()

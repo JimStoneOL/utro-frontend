@@ -11,7 +11,7 @@ export const DirectorFurnitureImage=({data})=>{
   
     const getImageByArticle= useCallback(async (data) => {
       try {
-        const fetched = await request(`http://localhost:8080/api/image/get/furniture/${data.article}`, 'GET', null, {
+        const fetched = await request(`https://morning-production-app.herokuapp.com/api/image/get/furniture/${data.article}`, 'GET', null, {
           Authorization: `Bearer ${token}`
         })
     

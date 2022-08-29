@@ -39,7 +39,7 @@ export const DirectorCreateFurniture=()=>{
 
 
   const pressHandler = async event => {
-     (form)
+    
     const formData=new FormData()
     formData.append("file",file)
 
@@ -59,14 +59,14 @@ export const DirectorCreateFurniture=()=>{
 
     let furnitureArticle;
       try {
-        const data = await request('http://localhost:8080/api/furniture/create', 'POST', {...form},{
+        const data = await request('https://morning-production-app.herokuapp.com/api/furniture/create', 'POST', {...form},{
           Authorization: `Bearer ${token}`
         })
         furnitureArticle=data.article
         message('Фурнитура успешно создана '+furnitureArticle)
       }catch(e){}
       try{
-        axios.post(`http://localhost:8080/api/image/upload/furniture/${furnitureArticle}`,formData,{
+        axios.post(`https://morning-production-app.herokuapp.com/api/image/upload/furniture/${furnitureArticle}`,formData,{
           headers:{
             'Authorization':`Bearer ${token}`,
             'Content-Type':'multipart/form-data'

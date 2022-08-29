@@ -19,7 +19,7 @@ export const CustomerProductImageRepository=()=>{
 
     const getAllProductImages = useCallback(async () => {
         try {
-          const fetched = await request(`http://localhost:8080/api/product/image/repository/get/template/${productId}`, 'GET', null, {
+          const fetched = await request(`https://morning-production-app.herokuapp.com/api/product/image/repository/get/template/${productId}`, 'GET', null, {
             Authorization: `Bearer ${token}`
           })
           setProductImage(fetched)

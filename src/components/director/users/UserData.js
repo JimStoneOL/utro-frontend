@@ -15,7 +15,7 @@ export const UserData=({dataList})=>{
     const getImageByArticle= useCallback(async (data) => {
    
         try {
-          const fetched = await request(`http://localhost:8080/api/image/get/user/${data.id}`, 'GET', null, {
+          const fetched = await request(`https://morning-production-app.herokuapp.com/api/image/get/user/${data.id}`, 'GET', null, {
             Authorization: `Bearer ${token}`
           })
       

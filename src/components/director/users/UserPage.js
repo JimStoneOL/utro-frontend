@@ -21,7 +21,7 @@ export const UserPage=()=>{
    
   const getAllUsers = useCallback(async () => {
     try {
-      const fetched = await request('http://localhost:8080/api/user/get/all', 'GET', null, {
+      const fetched = await request('https://morning-production-app.herokuapp.com/api/user/get/all', 'GET', null, {
         Authorization: `Bearer ${token}`
       })
       setUserData(fetched)

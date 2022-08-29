@@ -66,7 +66,7 @@ export const User=({data})=>{
             return
         }
         try{
-          await request('http://localhost:8080/api/role/give', 'POST', data,{
+          await request('https://morning-production-app.herokuapp.com/api/role/give', 'POST', data,{
           Authorization: `Bearer ${token}`
         })
     }catch(e){

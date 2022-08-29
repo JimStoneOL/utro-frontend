@@ -44,7 +44,7 @@ export const StorekeeperFurnitureWarehouseCard=({data})=>{
     form.id=data.id
     form.furnitureId=data.furnitureId
       try {
-        const fetch = await request('http://localhost:8080/api/furniture/warehouse/update', 'POST', {...form},{
+        const fetch = await request('https://morning-production-app.herokuapp.com/api/furniture/warehouse/update', 'POST', {...form},{
           Authorization: `Bearer ${token}`
         })
         data.amount=fetch.amount
@@ -55,7 +55,7 @@ export const StorekeeperFurnitureWarehouseCard=({data})=>{
     const deleteHandler=async event=>{
 
       try {
-        const fetch = await request(`http://localhost:8080/api/furniture/warehouse/delete/${data.id}`, 'POST', null,{
+        const fetch = await request(`https://morning-production-app.herokuapp.com/api/furniture/warehouse/delete/${data.id}`, 'POST', null,{
           Authorization: `Bearer ${token}`
         })
         message('Успешно удалено')

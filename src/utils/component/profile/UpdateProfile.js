@@ -21,13 +21,13 @@ export const UpdateProfile=()=>{
     const formData=new FormData()
     formData.append("file",file)
     try{
-          await request('http://localhost:8080/api/user/update', 'POST', {...form},{
+          await request('https://morning-production-app.herokuapp.com/api/user/update', 'POST', {...form},{
           Authorization: `Bearer ${token}`
         })
     }catch(e){}
     message('Данные обновлены')
       try {
-        axios.post('http://localhost:8080/api/image/upload/avatar',formData,{
+        axios.post('https://morning-production-app.herokuapp.com/api/image/upload/avatar',formData,{
           headers:{
             'Authorization':`Bearer ${token}`,
             'Content-Type':'multipart/form-data'

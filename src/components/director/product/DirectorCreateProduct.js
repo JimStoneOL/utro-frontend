@@ -92,7 +92,7 @@ export const DirectorCreateProduct=()=>{
 
   const getAllFurniture = useCallback(async () => {
     try {
-      const fetched = await request('http://localhost:8080/api/furniture/bucket/get/all', 'GET', null, {
+      const fetched = await request('https://morning-production-app.herokuapp.com/api/furniture/bucket/get/all', 'GET', null, {
         Authorization: `Bearer ${token}`
       })
       setFurnitureData(fetched)
@@ -105,7 +105,7 @@ export const DirectorCreateProduct=()=>{
 
   const getAllCloth = useCallback(async () => {
     try {
-      const fetched = await request('http://localhost:8080/api/cloth/bucket/get/all', 'GET', null, {
+      const fetched = await request('https://morning-production-app.herokuapp.com/api/cloth/bucket/get/all', 'GET', null, {
         Authorization: `Bearer ${token}`
       })
       setClothData(fetched)
@@ -138,7 +138,7 @@ export const DirectorCreateProduct=()=>{
   }
   const sendClothProduct=useCallback(async (data) => {
 
-    await request('http://localhost:8080/api/cloth/product/template/create', 'POST', data,{
+    await request('https://morning-production-app.herokuapp.com/api/cloth/product/template/create', 'POST', data,{
       Authorization: `Bearer ${token}`
     })
   },[token,request])
@@ -146,7 +146,7 @@ export const DirectorCreateProduct=()=>{
   const sendFurnitureProduct=useCallback(async (data) => {
 
    
-    await request('http://localhost:8080/api/furniture/product/template/create', 'POST', data,{
+    await request('https://morning-production-app.herokuapp.com/api/furniture/product/template/create', 'POST', data,{
       Authorization: `Bearer ${token}`
     })
   },[token,request])
@@ -172,7 +172,7 @@ export const DirectorCreateProduct=()=>{
 
     let productId
     try{
-      const data=await request('http://localhost:8080/api/product/template/create', 'POST', {...form},{
+      const data=await request('https://morning-production-app.herokuapp.com/api/product/template/create', 'POST', {...form},{
         Authorization: `Bearer ${token}`
       })
       productId=data.article
@@ -189,7 +189,7 @@ export const DirectorCreateProduct=()=>{
           sendFurnitureProduct(item)
       }
       });
-      axios.post(`http://localhost:8080/api/image/upload/template/product/${productId}`,formData,{
+      axios.post(`https://morning-production-app.herokuapp.com/api/image/upload/template/product/${productId}`,formData,{
           headers:{
             'Authorization':`Bearer ${token}`,
             'Content-Type':'multipart/form-data'
@@ -198,7 +198,7 @@ export const DirectorCreateProduct=()=>{
         )
         message('Продукт успешно создан '+productId)
     }catch(e){
-         ('wrong')
+         
     }
   }
 

@@ -53,7 +53,7 @@ export const BucketClothCard=({data,update})=>{
 
   const deleteClothBucket=useCallback(async (article) => { 
     try{
-      await request(`http://localhost:8080/api/cloth/bucket/delete/${article}`, 'POST', null,{
+      await request(`https://morning-production-app.herokuapp.com/api/cloth/bucket/delete/${article}`, 'POST', null,{
       Authorization: `Bearer ${token}`
     })
     update()

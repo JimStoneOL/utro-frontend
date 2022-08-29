@@ -22,7 +22,7 @@ export const ManagerOrderCard=({data})=>{
   const addManager=useCallback(async (orderId) => { 
 
     try{
-      await request(`http://localhost:8080/api/order/add/manager/${orderId}`, 'POST', null,{
+      await request(`https://morning-production-app.herokuapp.com/api/order/add/manager/${orderId}`, 'POST', null,{
       Authorization: `Bearer ${token}`
     })
     message('Успешно добавлен заказ')

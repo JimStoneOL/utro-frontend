@@ -15,7 +15,7 @@ export const CustomerProduct=()=>{
 
     const getProduct = useCallback(async () => {
         try {
-          const fetched = await request(`http://localhost:8080/api/product/get/${productId}`, 'GET', null, {
+          const fetched = await request(`https://morning-production-app.herokuapp.com/api/product/get/${productId}`, 'GET', null, {
             Authorization: `Bearer ${token}`
           })
           

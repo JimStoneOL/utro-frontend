@@ -21,7 +21,7 @@ export const StorekeeperEmailCreate=()=>{
       const pressHandler = async event => {
         form.status='STATUS_PRIVATE'
         try {
-              await request('http://localhost:8080/api/local/email/send', 'POST', {...form},{
+              await request('https://morning-production-app.herokuapp.com/api/local/email/send', 'POST', {...form},{
               Authorization: `Bearer ${token}`
             })
             message('Сообшение отправлено')

@@ -16,7 +16,7 @@ export const CustomerLoadMyProductList=()=>{
 
     const getAllMyProducts = useCallback(async () => {
         try {
-          const myfetched = await request('http://localhost:8080/api/product/get/all', 'GET', null, {
+          const myfetched = await request('https://morning-production-app.herokuapp.com/api/product/get/all', 'GET', null, {
             Authorization: `Bearer ${token}`
           })
           setMyProductData(myfetched)

@@ -85,7 +85,7 @@ export const ManagerProduct=({data})=>{
 
   const getPriceForProduct = useCallback(async () => {
     try {
-      const fetched = await request(`http://localhost:8080/api/product/price/${data.article}`, 'GET', null, {
+      const fetched = await request(`https://morning-production-app.herokuapp.com/api/product/price/${data.article}`, 'GET', null, {
         Authorization: `Bearer ${token}`
       })
         setPrice(fetched)
@@ -99,7 +99,7 @@ export const ManagerProduct=({data})=>{
 
   const deleteHandler=async event=>{
     try {
-      const fetch = await request(`http://localhost:8080/api/product/template/delete/${data.article}`, 'POST', null,{
+      const fetch = await request(`https://morning-production-app.herokuapp.com/api/product/template/delete/${data.article}`, 'POST', null,{
         Authorization: `Bearer ${token}`
       })
       setDeleted(true)

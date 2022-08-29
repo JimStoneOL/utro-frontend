@@ -104,11 +104,11 @@ export const DirectorUpdateProduct=({data})=>{
     }
     let productId
     try{
-      const data=await request('http://localhost:8080/api/product/template/update', 'POST', {...form},{
+      const data=await request('https://morning-production-app.herokuapp.com/api/product/template/update', 'POST', {...form},{
         Authorization: `Bearer ${token}`
       })
       productId=data.article
-      axios.post(`http://localhost:8080/api/image/upload/template/product/${productId}`,formData,{
+      axios.post(`https://morning-production-app.herokuapp.com/api/image/upload/template/product/${productId}`,formData,{
           headers:{
             'Authorization':`Bearer ${token}`,
             'Content-Type':'multipart/form-data'
@@ -120,7 +120,7 @@ export const DirectorUpdateProduct=({data})=>{
     message('Продукт успешно обновлён')
     }catch(e){
       update()
-         ('wrong')
+         
     }
   }
 

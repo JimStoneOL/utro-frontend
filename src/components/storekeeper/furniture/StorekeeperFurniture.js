@@ -98,7 +98,7 @@ export const StorekeeperFurniture=({data})=>{
     form.furnitureId=data.article
   
       try {
-        const res = await request('http://localhost:8080/api/furniture/warehouse/create', 'POST', {...form},{
+        const res = await request('https://morning-production-app.herokuapp.com/api/furniture/warehouse/create', 'POST', {...form},{
           Authorization: `Bearer ${token}`
         })
         message('Склад успешно создался - номер: '+res.id)
@@ -107,7 +107,7 @@ export const StorekeeperFurniture=({data})=>{
 
     const getAllFurnitureWarehouses = useCallback(async () => {
       try {
-        const fetched = await request(`http://localhost:8080/api/furniture/warehouse/get/all/furniture/${data.article}`, 'GET', null, {
+        const fetched = await request(`https://morning-production-app.herokuapp.com/api/furniture/warehouse/get/all/furniture/${data.article}`, 'GET', null, {
           Authorization: `Bearer ${token}`
         })
         setFurnitureWarehouses(fetched)

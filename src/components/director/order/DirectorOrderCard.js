@@ -48,7 +48,7 @@ if(stage==='STAGE_IN_PROCESS_OF_DELETE'){
 const deleteOrder=useCallback(async () => { 
 
     try{
-      const fetched=await request(`http://localhost:8080/api/order/delete/forever/${data.id}`, 'POST',null,{
+      const fetched=await request(`https://morning-production-app.herokuapp.com/api/order/delete/forever/${data.id}`, 'POST',null,{
       Authorization: `Bearer ${token}`
     })
     message(fetched.message)

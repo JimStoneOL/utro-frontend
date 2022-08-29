@@ -58,7 +58,7 @@ export const CustomerCloth=({data})=>{
   const addClothToBucket=useCallback(async (article) => { 
  
     try{
-      await request(`http://localhost:8080/api/cloth/bucket/create/${article}`, 'POST', null,{
+      await request(`https://morning-production-app.herokuapp.com/api/cloth/bucket/create/${article}`, 'POST', null,{
       Authorization: `Bearer ${token}`
     })
     setAdded(true)
@@ -68,7 +68,7 @@ export const CustomerCloth=({data})=>{
 
 const deleteClothBucket=useCallback(async (article) => { 
         try{
-          await request(`http://localhost:8080/api/cloth/bucket/delete/${article}`, 'POST', null,{
+          await request(`https://morning-production-app.herokuapp.com/api/cloth/bucket/delete/${article}`, 'POST', null,{
           Authorization: `Bearer ${token}`
         })
         setAdded(false)
@@ -90,7 +90,7 @@ if(added){
 
 const checkClothInBucket = useCallback(async () => {
   try {
-    const fetched = await request(`http://localhost:8080/api/cloth/bucket/get/${data.article}`, 'GET', null, {
+    const fetched = await request(`https://morning-production-app.herokuapp.com/api/cloth/bucket/get/${data.article}`, 'GET', null, {
       Authorization: `Bearer ${token}`
     })
     if(fetched.article===data.article){

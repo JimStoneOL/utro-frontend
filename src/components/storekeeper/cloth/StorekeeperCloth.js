@@ -124,7 +124,7 @@ export const StorekeeperCloth=({data})=>{
 
     }
       try {
-        const res = await request('http://localhost:8080/api/cloth/warehouse/create', 'POST', {...form},{
+        const res = await request('https://morning-production-app.herokuapp.com/api/cloth/warehouse/create', 'POST', {...form},{
           Authorization: `Bearer ${token}`
         })
         message('Склад успешно создался - номер: '+res.id)
@@ -133,7 +133,7 @@ export const StorekeeperCloth=({data})=>{
 
     const getAllClothWarehouses = useCallback(async () => {
       try {
-        const fetched = await request(`http://localhost:8080/api/cloth/warehouse/get/all/cloth/${data.article}`, 'GET', null, {
+        const fetched = await request(`https://morning-production-app.herokuapp.com/api/cloth/warehouse/get/all/cloth/${data.article}`, 'GET', null, {
           Authorization: `Bearer ${token}`
         })
         setClothWarehouses(fetched)

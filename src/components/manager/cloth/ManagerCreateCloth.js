@@ -57,14 +57,14 @@ export const ManagerCreateCloth=()=>{
     
     let clothArticle;
       try {
-        const data = await request('http://localhost:8080/api/cloth/create', 'POST', {...form},{
+        const data = await request('https://morning-production-app.herokuapp.com/api/cloth/create', 'POST', {...form},{
           Authorization: `Bearer ${token}`
         })
         clothArticle=data.article
         message('Ткань успешно создана '+clothArticle)
       }catch(e){}
       try{
-        axios.post(`http://localhost:8080/api/image/upload/cloth/${clothArticle}`,formData,{
+        axios.post(`https://morning-production-app.herokuapp.com/api/image/upload/cloth/${clothArticle}`,formData,{
           headers:{
             'Authorization':`Bearer ${token}`,
             'Content-Type':'multipart/form-data'

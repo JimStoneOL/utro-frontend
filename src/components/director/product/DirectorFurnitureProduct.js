@@ -14,13 +14,13 @@ export const DirectorFurnitureProduct=()=>{
 
     const getFurniture = useCallback(async () => {
         try {
-          const furnitureProductFetched = await request(`http://localhost:8080/api/furniture/product/template/get/product/${productId}`, 'GET', null, {
+          const furnitureProductFetched = await request(`https://morning-production-app.herokuapp.com/api/furniture/product/template/get/product/${productId}`, 'GET', null, {
             Authorization: `Bearer ${token}`
           })
           if(furnitureProductFetched.length===0){
             setFurnitureProduct(null)
         }else{
-             ('выполнен')
+             
             setFurnitureProduct(furnitureProductFetched)
         }
           

@@ -21,13 +21,13 @@ export const CustomerClothProduct=()=>{
 
     const getCloth = useCallback(async () => {
         try {
-          const clothProductFetched = await request(`http://localhost:8080/api/cloth/product/template/get/product/${productId}`, 'GET', null, {
+          const clothProductFetched = await request(`https://morning-production-app.herokuapp.com/api/cloth/product/template/get/product/${productId}`, 'GET', null, {
             Authorization: `Bearer ${token}`
           })
           if(clothProductFetched.length===0){
             setClothProduct(null)
         }else{
-             ('выполнен')
+             
             setClothProduct(clothProductFetched)
         }
           
