@@ -35,7 +35,7 @@ export const DirectorOrderList=()=>{
     {
         orders.map((item,i)=>{ 
           if(orders[i].name===''){
-            console.log('undefined') 
+               
           }else{
           return(
            <>

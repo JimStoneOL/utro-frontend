@@ -26,7 +26,7 @@ export const StorekeeperFurniture=({data})=>{
   const {request,loading,error,clearError} = useHttp()
   const message = useMessage()
   const [form,setForm]=useState({})
-  const [furnitureWarehouses,setFurnitureWarehouses]=useState([{}])
+  const [furnitureWarehouses,setFurnitureWarehouses]=useState([])
 
   const [width,setWidth]=useState(data.width)
   const [length,setLength]=useState(data.length)
@@ -123,7 +123,7 @@ export const StorekeeperFurniture=({data})=>{
     }, [])
 
     return(
-        <div class="col s12 m7">
+        <div class="col s12 m7" key={data.article}>
         <div class="card horizontal">
           <div class="card-image">
             <img src={`data:image/jpeg;base64,${data.imageBytes}`}/>
@@ -132,7 +132,7 @@ export const StorekeeperFurniture=({data})=>{
           <TextField
                         id="outlined-select-currency"
                         select
-                        label="Select"
+                        
                         value={currency}
                         onChange={handleUnit}
                         helperText="Выберите единицу измерения"
@@ -196,7 +196,8 @@ export const StorekeeperFurniture=({data})=>{
                             Информация о складах
                             </Typography>
                             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                            {!loading && furnitureWarehouses && <StorekeeperFurnitureWarehouseList dataList={furnitureWarehouses}/>}
+                            {!(furnitureWarehouses.length>0) && !loading && <h6 className="center">Пусто</h6>}
+                            {!loading && furnitureWarehouses.length>0 && <StorekeeperFurnitureWarehouseList dataList={furnitureWarehouses}/>}
                             </Typography>
                             </Box>
                         </Modal>

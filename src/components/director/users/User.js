@@ -70,7 +70,7 @@ export const User=({data})=>{
           Authorization: `Bearer ${token}`
         })
     }catch(e){
-        console.log()
+      
     }
       },[token,request])
 
@@ -86,7 +86,7 @@ export const User=({data})=>{
       }
     return(<>
 
-    <Card sx={{ maxWidth: 345,backgroundColor:'#b2dfdb'}}>
+    <Card sx={{ maxWidth: 345,backgroundColor:'#b2dfdb'}} key={data.id}>
       <CardMedia
         component="img"
         height="140"

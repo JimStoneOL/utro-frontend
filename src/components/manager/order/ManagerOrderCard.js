@@ -29,7 +29,7 @@ export const ManagerOrderCard=({data})=>{
     setHidden(true)
 
 }catch(e){
-    console.log()
+    
 }
   },[token,request])
 
@@ -74,7 +74,7 @@ export const ManagerOrderCard=({data})=>{
  
     return(
         <>
-              <div class="row" hidden={hidden}>
+              <div class="row" hidden={hidden} key={data.id}>
     <div class="col s12 m6">
       <div class="card">
         <div class="card-content">

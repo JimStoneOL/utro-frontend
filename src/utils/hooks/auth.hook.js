@@ -30,7 +30,7 @@ export const useAuth = () => {
 
 //   window.onbeforeunload = function() {
 //     logout()
-//     console.log()
+//      ()
 //  }
 
   useEffect(()=>{

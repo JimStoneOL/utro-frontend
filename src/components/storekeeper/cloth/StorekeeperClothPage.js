@@ -24,14 +24,18 @@ export const StorekeeperClothPage=()=>{
   useEffect(() => {
     getAllCloths()
   }, [getAllCloths])
-  
+
+  if(!(clothData.length>0) && !loading){
+    return <h6 className="center" style={{marginTop:'20%'}}>Пусто</h6>
+  }
+
   if (loading) {
     return <Loader/>
   }
   
     return(
       <>
-      {!loading && clothData && <StorekeeperClothList dataList={clothData}/>}
+      {!loading && clothData.length>0 && <StorekeeperClothList dataList={clothData}/>}
         </>
     )
  }

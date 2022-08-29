@@ -25,12 +25,15 @@ export const CustomerClothPage=()=>{
   useEffect(() => {
     getAllCloths()
   }, [getAllCloths])
+
+  if(!(clothData.length>0) && !loading){
+    return <h6 className="center" style={{marginTop:'20%'}}>Пусто</h6>
+  }
   
   if (loading) {
     return <Loader/>
   }
 
-  
     return(
       <>
       {!loading && clothData.length>0 && <CustomerClothFilter dataList={clothData}/>}

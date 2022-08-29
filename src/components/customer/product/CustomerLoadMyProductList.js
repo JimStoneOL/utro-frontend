@@ -1,4 +1,4 @@
-import { Button } from "@mui/material"
+
 import { useCallback } from "react"
 import { useContext } from "react"
 import { useEffect, useState } from "react"
@@ -6,6 +6,7 @@ import { Loader } from "../../../utils/component/Loader"
 import { AuthContext } from "../../../utils/context/AuthContext"
 import { useHttp } from "../../../utils/hooks/http.hook"
 import { CustomerMyProductFilter } from "./CustomerMyProductFilter"
+import { CustomerProductContext } from "./CustomerProductContext"
 
 export const CustomerLoadMyProductList=()=>{
 
@@ -25,14 +26,18 @@ export const CustomerLoadMyProductList=()=>{
       useEffect(() => {
         getAllMyProducts()
       }, [getAllMyProducts])
+
+      if(!(myProductData.length>0) && !loading){
+        return <h6 className="center" style={{marginTop:'20%'}}>Пусто</h6>
+      }
       
       if (loading) {
         return <Loader/>
       }
 
       return(<>
-      
+         <CustomerProductContext.Provider value={{update:getAllMyProducts}}>
         {!loading && myProductData.length>0 && <CustomerMyProductFilter dataList={myProductData}/>}
-  
+        </CustomerProductContext.Provider>
         </>)
 }

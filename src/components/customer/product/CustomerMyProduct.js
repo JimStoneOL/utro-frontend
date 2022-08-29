@@ -20,7 +20,7 @@ export const CustomerMyProduct=({data})=>{
   const message = useMessage()
   const [deleted,setDeleted]=useState(false)
   const [ordered,setOrdered]=useState(false)
-
+  const [price,setPrice]=useState(0)
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -82,6 +82,19 @@ export const CustomerMyProduct=({data})=>{
       
   },[currency,length,width])
 
+  const getPriceForProduct = useCallback(async () => {
+    try {
+      const fetched = await request(`http://localhost:8080/api/product/price/${data.article}`, 'GET', null, {
+        Authorization: `Bearer ${token}`
+      })
+        setPrice(fetched)
+    } catch (e) {}
+  }, [token, request])
+
+  useEffect(() => {
+    getPriceForProduct()
+  }, [getPriceForProduct])
+
   useEffect(() => {
     message(error)
     clearError()
@@ -117,7 +130,7 @@ export const CustomerMyProduct=({data})=>{
   }
     return(
         <>
-           <div class="col s12 m7">
+           <div class="col s12 m7" key={data.article}>
           <div class="card horizontal">
             <div class="card-image">
               <img src={`data:image/jpeg;base64,${data.imageBytes}`}/>
@@ -126,7 +139,7 @@ export const CustomerMyProduct=({data})=>{
             <TextField
                         id="outlined-select-currency"
                         select
-                        label="Select"
+                        
                         value={currency}
                         onChange={handleUnit}
                         helperText="Выберите единицу измерения"
@@ -143,7 +156,8 @@ export const CustomerMyProduct=({data})=>{
                 Наименование: {data.name} <br/>
                 ширина: {width} {currency}<br/>
                 длина: {length} {currency} <br/>
-                Комментарий: {data.comment}
+                Комментарий: {data.comment} <br/>
+                Цена: {Math.round(price * 100) / 100} руб
               </p>
               </div>
               <div class="card-action">

@@ -20,7 +20,7 @@ export const ManagerFurnitureProduct=()=>{
           if(furnitureProductFetched.length===0){
             setFurnitureProduct(null)
         }else{
-            console.log('выполнен')
+             ('выполнен')
             setFurnitureProduct(furnitureProductFetched)
         }
           

@@ -3,7 +3,6 @@ import { StorekeeperFurnitureWarehouseCard } from "./StorekeeperFurnitureWarehou
 
 export const StorekeeperFurnitureWarehouseList=({dataList})=>{
 
-    console.log(dataList)
 
             return(<>
                             <Box

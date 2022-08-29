@@ -97,8 +97,7 @@ export const CustomerMiniFurnitureCard=({data,selectFurniture})=>{
                   </div>
                   <TextField
                         id="outlined-select-currency"
-                        select
-                        label="Select"
+                        select     
                         value={currency}
                         onChange={handleUnit}
                         helperText="Выберите единицу измерения"

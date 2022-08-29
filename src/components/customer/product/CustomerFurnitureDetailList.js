@@ -3,7 +3,6 @@ import { CustomerFurnitureProductDetailList } from "./CustomerFurnitureProductDe
 
 export const CustomerFurnitureDetailList=({dataList})=>{
 
-  console.log(dataList)
 
     return(<>
         {

@@ -52,7 +52,6 @@ export const BucketClothList=({dataList,update})=>{
       {
           dataList.map((item,i)=>{ 
             if(dataList[i].name===''){
-              console.log('undefined') 
             }else{
             return(
              <>

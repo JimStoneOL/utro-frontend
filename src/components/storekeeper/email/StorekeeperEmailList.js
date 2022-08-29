@@ -1,9 +1,9 @@
 
 import '../../../utils/styles/vertical-menu.css'
-import { DirectorEmailCard } from './DirectorEmailCard'
+import { StorekeeperEmailCard } from './StorekeeperEmailCard'
 
-export const DirectorEmailList=({dataList})=>{
-    
+export const StorekeeperEmailList=({dataList})=>{
+
     return(<>
     <br/>
    <main>
@@ -12,7 +12,7 @@ export const DirectorEmailList=({dataList})=>{
               return(
                <>
               <div className="section">
-                 <DirectorEmailCard data={item}/>
+                 <StorekeeperEmailCard data={item}/>
               </div>
                </>
               ) 

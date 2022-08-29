@@ -4,6 +4,7 @@ import { Loader } from "../../../utils/component/Loader"
 import { AuthContext } from "../../../utils/context/AuthContext"
 import { useHttp } from "../../../utils/hooks/http.hook"
 import { DirectorProductContext } from "./DirectorProductContext"
+import { DirectorProductFilter } from "./DirectorProductFilter"
 import { DirectorProductList } from "./DirectorProductList"
 
 
@@ -34,7 +35,7 @@ export const DirectorLoadProductList=()=>{
       }
       return(<>
          <DirectorProductContext.Provider value={{update:getAllProducts}}>
-         {!loading && productData.length>0 && <DirectorProductList dataList={productData}/>}
+         {!loading && productData.length>0 && <DirectorProductFilter dataList={productData}/>}
     </DirectorProductContext.Provider>
       </>)
 }

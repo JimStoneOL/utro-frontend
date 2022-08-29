@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom"
 export const StorekeeperProductList=()=>{
     return(
         <>    
-      Нет доступа
+           <h6 className="center" style={{marginTop:'20%'}}>Нет доступа</h6>
     </>
     )
 }

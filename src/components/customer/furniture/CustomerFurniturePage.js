@@ -24,12 +24,16 @@ export const CustomerFurniturePage=()=>{
     useEffect(() => {
       getAllFurniture()
     }, [getAllFurniture])
+
+    if(!(furnitureData.length>0) && !loading){
+      return <h6 className="center" style={{marginTop:'20%'}}>Пусто</h6>
+    }
     
     if (loading) {
       return <Loader/>
     }
 
-
+    
     return(
       <>
           {!loading && furnitureData.length>0 && <CustomerFurnitureFilter dataList={furnitureData}/>}

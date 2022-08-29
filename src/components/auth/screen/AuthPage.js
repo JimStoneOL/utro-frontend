@@ -84,7 +84,7 @@ export const AuthPage = () => {
               </button>
               <NavLink to="/register">
               <button
-                className="btn own-add-button"
+                className="waves-effect waves-light btn-small"
               >
                 Регистрация
               </button>

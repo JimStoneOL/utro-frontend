@@ -27,21 +27,14 @@ export const StorekeeperFurnitureList=({dataList})=>{
   },[token,request])
   
   useEffect(()=>{
-    dataList.map(data=>{
-      if(!(dataList.length===furniture.length)){
-      getImageByArticle(data)
+    const fetchData = async () => {
+      for (const item of dataList) {
+        await getImageByArticle(item);
       }
-    })
-  } ,[])
-  
-  var interval=setInterval(()=>{
-    if(furniture.length===dataList.length+1){
       setIsLoaded(true)
-      clearInterval(interval)
-    }else{
-      console.log('not loaded')
-    }
-  },1000)
+  }
+  fetchData();
+  } ,[])
 
 
   return(
@@ -56,7 +49,7 @@ export const ShowFurniture=({dataList})=>{
     {
         dataList.map((item,i)=>{ 
           if(i===0){
-            console.log('undefined') 
+               
           }else{
           return(
            <>

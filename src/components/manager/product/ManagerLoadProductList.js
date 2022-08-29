@@ -14,7 +14,7 @@ export const ManagerLoadProductList=()=>{
     const [productData, setProductData]=useState([])
  
     const getAllProducts = useCallback(async () => {
-      console.log('zalipa')
+       ('zalipa')
      try {
        const fetched = await request('http://localhost:8080/api/product/template/get/all', 'GET', null, {
          Authorization: `Bearer ${token}`

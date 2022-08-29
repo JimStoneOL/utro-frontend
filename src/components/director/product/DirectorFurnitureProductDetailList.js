@@ -49,13 +49,13 @@ export const DirectorFurnitureProductDetailList=({data})=>{
   },[currency,length,width])
   
     return(
-        <div class="col s12 m7">
+        <div class="col s12 m7" key={data.id}>
         <div class="card horizontal">
           <div class="card-stacked">
           <TextField
                         id="outlined-select-currency"
                         select
-                        label="Select"
+                        
                         value={currency}
                         onChange={handleUnit}
                         helperText="Выберите единицу измерения"

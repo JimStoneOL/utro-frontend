@@ -16,9 +16,9 @@ export const ManagerEmailCard=({data})=>{
         return 'приватное сообщение'
     }
   }
-  console.log(data)
+   (data)
     return(<>
-  <Card sx={{ minWidth: 275 }}>
+  <Card sx={{ minWidth: 275 }} key={data.id}>
     <CardContent>
       <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
        Тема: {data.heading}

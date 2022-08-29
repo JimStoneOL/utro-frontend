@@ -27,7 +27,7 @@ export const CustomerClothProduct=()=>{
           if(clothProductFetched.length===0){
             setClothProduct(null)
         }else{
-            console.log('выполнен')
+             ('выполнен')
             setClothProduct(clothProductFetched)
         }
           

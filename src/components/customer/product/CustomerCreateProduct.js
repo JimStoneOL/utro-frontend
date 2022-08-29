@@ -13,6 +13,7 @@ import axios from "axios";
 import { CustomerMiniFurnitureList } from './CustomerMiniFurnitureList'
 import { CustomerMiniClothList } from './CustomerMiniClothList'
 import { MenuItem, TextField } from '@mui/material'
+import { Link } from 'react-router-dom'
 
 
 
@@ -185,7 +186,7 @@ export const CustomerCreateProduct=()=>{
       furnitureProduct.forEach((item,i) => {
         if(i>0){
           item.productId=productId
-          console.log(furnitureProduct)
+           (furnitureProduct)
           sendFurnitureProduct(item)
       }
       });
@@ -198,7 +199,7 @@ export const CustomerCreateProduct=()=>{
         )
         message('Продукт успешно создан '+productId)
     }catch(e){
-        console.log('wrong')
+         ('wrong')
     }
   }
 
@@ -271,7 +272,7 @@ export const CustomerCreateProduct=()=>{
           <div className="card center">
             <div className='pink lighten-5'>
             <div className="card-content white-text">
-              <span className="card-title" style={{color:'rgb(105, 182, 204)'}}>Создание шаблонного продукта</span>
+              <span className="card-title" style={{color:'rgb(105, 182, 204)'}}>Создание продукта</span>
               <div className="pink lighten-5">
               <div className="input-field">
                   <input
@@ -287,7 +288,6 @@ export const CustomerCreateProduct=()=>{
                   <TextField
                         id="outlined-select-currency"
                         select
-                        label="Select"
                         value={currency}
                         onChange={handleUnit}
                         helperText="Выберите единицу измерения"
@@ -353,7 +353,8 @@ export const CustomerCreateProduct=()=>{
                                 Выбор тканей
                             </Typography>
                             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                            {!loading && clothData && <CustomerMiniClothList dataList={clothData} selectCloth={selectCloth}/>}
+                           {!(clothData.length>0) && !loading && <h6 className="center">Пусто. <Link to={'/cloth'}>Выбрать ткани</Link></h6>}
+                            {!loading && clothData.length>0 && <CustomerMiniClothList dataList={clothData} selectCloth={selectCloth}/>}
                             </Typography>
                             </Box>
               </Modal>
@@ -371,7 +372,8 @@ export const CustomerCreateProduct=()=>{
                                 Выбор фурнитуры
                             </Typography>
                             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                            {!loading && furnitureData && <CustomerMiniFurnitureList dataList={furnitureData} selectFurniture={selectFurniture}/>}
+                           {!(furnitureData.length>0) && !loading && <h6 className="center">Пусто. <Link to={'/furniture'}>Выбрать фурнитуры</Link></h6>}
+                            {!loading && furnitureData.length>0 && <CustomerMiniFurnitureList dataList={furnitureData} selectFurniture={selectFurniture}/>}
                             </Typography>
                             </Box>
               </Modal>

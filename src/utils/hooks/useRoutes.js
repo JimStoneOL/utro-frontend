@@ -16,7 +16,6 @@ import { CustomerMyFurnitureProduct } from "../../components/customer/product/Cu
 import { CustomerMyProductImageRepository } from "../../components/customer/product/CustomerMyProductImageRepository"
 import { CustomerProductImageRepository } from "../../components/customer/product/CustomerProductImageRepository"
 import { CustomerProductPage } from "../../components/customer/product/CustomerProductPage"
-import { CustomerProfilePage } from "../../components/customer/profile/CustomerProfilePage"
 import { DirectorClothPage } from "../../components/director/cloth/DirectorClothPage"
 import { DirectorHome } from "../../components/director/DirectorHome"
 import { DirectorEmailCreate } from "../../components/director/email/DirectorEmailCreate"
@@ -31,7 +30,6 @@ import { DirectorFurniture } from "../../components/director/product/DirectorFur
 import { DirectorFurnitureProduct } from "../../components/director/product/DirectorFurnitureProduct"
 import { DirectorProductList } from "../../components/director/product/DirectorProductList"
 import { DirectorProductPage } from "../../components/director/product/DirectorProductPage"
-import { DirectorProfilePage } from "../../components/director/profile/DirectorProfilePage"
 import { ReportPage } from "../../components/director/report/ReportPage"
 import { UserPage } from "../../components/director/users/UserPage"
 import { ManagerClothPage } from "../../components/manager/cloth/ManagerClothPage"
@@ -51,14 +49,13 @@ import { ManagerFurnitureProduct } from "../../components/manager/product/Manage
 import { ManagerProductImageRepository } from "../../components/manager/product/ManagerProductImageRepository"
 import { ManagerProductList } from "../../components/manager/product/ManagerProductList"
 import { ManagerProductPage } from "../../components/manager/product/ManagerProductPage"
-import { ManagerProfilePage } from "../../components/manager/profile/ManagerProfilePage"
 import { StorekeeperClothList } from "../../components/storekeeper/cloth/StorekeeperClothList"
 import { StorekeeperClothPage } from "../../components/storekeeper/cloth/StorekeeperClothPage"
+import { StorekeeperEmailCreate } from "../../components/storekeeper/email/StorekeeperEmailCreate"
 import { StorekeeperFurnitureList } from "../../components/storekeeper/furniture/StorekeeperFurnitureList"
 import { StorekeeperFurniturePage } from "../../components/storekeeper/furniture/StorekeeperFurniturePage"
 import { StorekeeperOrderList } from "../../components/storekeeper/order/StorekeeperOrderList"
 import { StorekeeperProductList } from "../../components/storekeeper/product/StorekeeperProductList"
-import { StorekeeperProfilePage } from "../../components/storekeeper/profile/StorekeeperProfilePage"
 import { StorekeeperHome } from "../../components/storekeeper/StorekeeperHome"
 import { AboutPage } from "../component/About"
 import { BucketPage } from "../component/bucket/BucketPage"
@@ -283,6 +280,9 @@ export const useRoutes=(isAuthenticated,role)=>{
             </Route>
             <Route path="/bucket">
                     <BucketPage/>
+                </Route>
+                <Route path="/email">
+                    <StorekeeperEmailCreate/>
                 </Route>
           <Redirect to="/" />
         </Switch>

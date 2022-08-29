@@ -58,7 +58,7 @@ export const CustomerMiniClothList=({dataList,selectCloth})=>{
         {
             dataList.map((item,i)=>{ 
               if(i===0){
-                console.log('undefined') 
+                   
               }else{
               return(
                <>

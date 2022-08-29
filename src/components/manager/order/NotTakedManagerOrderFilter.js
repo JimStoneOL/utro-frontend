@@ -52,8 +52,8 @@ export const NotTakedManagerOrderFilter=({dataList})=>{
 
         setSearchOrder([{}])
         setSearching(false)
-        console.log(dataList)
-        console.log(stage)
+       
+         (stage)
           let searchData = dataList.filter(order => order.stage === stage)
           if(searchData.length!==0){
             setSearchOrder(searchData)

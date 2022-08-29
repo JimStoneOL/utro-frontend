@@ -23,15 +23,18 @@ export const StorekeeperFurniturePage=()=>{
     useEffect(() => {
       getAllFurniture()
     }, [getAllFurniture])
+
+    if(!(furnitureData.length>0) && !loading){
+      return <h6 className="center" style={{marginTop:'20%'}}>Пусто</h6>
+    }
     
     if (loading) {
       return <Loader/>
     }
 
-
     return(
       <>
-          {!loading && furnitureData && <StorekeeperFurnitureList dataList={furnitureData}/>}
+          {!loading && furnitureData.length>0 && <StorekeeperFurnitureList dataList={furnitureData}/>}
         </>
     )
 }

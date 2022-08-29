@@ -108,7 +108,7 @@ const checkFurnitureInBucket = useCallback(async () => {
   }, [error, message, clearError])
 
     return(
-        <div class="col s12 m7">
+        <div class="col s12 m7" key={data.article}>
         <div class="card horizontal">
           <div class="card-image">
             <img src={`data:image/jpeg;base64,${data.imageBytes}`}/>
@@ -117,7 +117,6 @@ const checkFurnitureInBucket = useCallback(async () => {
           <TextField
                         id="outlined-select-currency"
                         select
-                        label="Select"
                         value={currency}
                         onChange={handleUnit}
                         helperText="Выберите единицу измерения"
@@ -135,8 +134,8 @@ const checkFurnitureInBucket = useCallback(async () => {
                   тип: {data.type} <br/>
                   ширина: {width} {currency}<br/>
                   длина: {length} {currency} <br/>
-                  вес: {data.weight} <br/>
-                  цена: {data.price} <br/>
+                  вес: {data.weight} гр<br/>
+                  цена: {data.price} руб<br/>
             </p>
             </div>
           </div>

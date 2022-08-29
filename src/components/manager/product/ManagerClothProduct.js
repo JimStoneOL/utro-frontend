@@ -25,7 +25,7 @@ export const ManagerClothProduct=()=>{
           if(clothProductFetched.length===0){
             setClothProduct(null)
         }else{
-            console.log('выполнен')
+             ('выполнен')
             setClothProduct(clothProductFetched)
         }
           

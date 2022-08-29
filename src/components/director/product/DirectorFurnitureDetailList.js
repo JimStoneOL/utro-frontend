@@ -5,7 +5,7 @@ import { DirectorFurnitureProductDetailList } from "./DirectorFurnitureProductDe
 
 export const DirectorFurnitureDetailList=({dataList})=>{
 
-  console.log(dataList)
+  
 
     return(<>
         {

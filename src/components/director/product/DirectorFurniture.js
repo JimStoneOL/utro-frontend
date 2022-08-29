@@ -21,7 +21,7 @@ export const DirectorFurniture=()=>{
           const fetched = await request(`http://localhost:8080/api/furniture/get/${furnitureId}`, 'GET', null, {
             Authorization: `Bearer ${token}`
           })
-          console.log(fetched)
+           (fetched)
       setFurniture(fetched)
         } catch (e) {}
       },[token,request])

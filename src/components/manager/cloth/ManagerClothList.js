@@ -15,7 +15,7 @@ export const ManagerClothList=({dataList,update})=>{
   }])
   
 const getImageByArticle= useCallback(async (data) => {
-  console.log(cloth)
+   (cloth)
   try {
     const fetched = await request(`http://localhost:8080/api/image/get/cloth/${data.article}`, 'GET', null, {
       Authorization: `Bearer ${token}`
@@ -52,7 +52,7 @@ export const ShowCloth=({dataList,update})=>{
     {
         dataList.map((item,i)=>{ 
           if(dataList[i].name===''){
-            console.log('undefined') 
+               
           }else{
           return(
            <>

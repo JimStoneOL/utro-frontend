@@ -23,7 +23,7 @@ export const CustomerOrderDetail=()=>{
           if(orderedProductFetched.length===0){
             setOrderedProduct(null)
         }else{
-            console.log('выполнен')
+             ('выполнен')
             setOrderedProduct(orderedProductFetched)
         }
           
@@ -40,7 +40,7 @@ export const CustomerOrderDetail=()=>{
 
     return(
         <>
-        {!loading && orderedProduct ? <CustomerOrderedProductList dataList={orderedProduct}/> : <div>Заказанные продукты не найдены</div>}
+        {!loading && orderedProduct ? <CustomerOrderedProductList dataList={orderedProduct}/> : <h6 className="center" style={{marginTop:'20%'}}>Заказанные продукты не найдены</h6>}
         </>
     )
 }

@@ -99,7 +99,7 @@ export const DirectorMiniFurnitureCard=({data,selectFurniture})=>{
                   <TextField
                         id="outlined-select-currency"
                         select
-                        label="Select"
+                        
                         value={currency}
                         onChange={handleUnit}
                         helperText="Выберите единицу измерения"

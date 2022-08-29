@@ -55,7 +55,7 @@ export const CustomerMiniFurnitureList=({dataList,selectFurniture})=>{
         {
             dataList.map((item,i)=>{ 
               if(i===0){
-                console.log('undefined') 
+                   
               }else{
               return(
                <>

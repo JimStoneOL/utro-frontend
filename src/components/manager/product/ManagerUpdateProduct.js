@@ -119,7 +119,7 @@ export const ManagerUpdateProduct=({data})=>{
     message('Продукт успешно обновлён')
     }catch(e){
       update()
-        console.log('wrong')
+         ('wrong')
     }
   }
 
@@ -154,7 +154,7 @@ export const ManagerUpdateProduct=({data})=>{
                   <TextField
                         id="outlined-select-currency"
                         select
-                        label="Select"
+                        
                         value={currency}
                         onChange={handleUnit}
                         helperText="Выберите единицу измерения"

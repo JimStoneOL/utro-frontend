@@ -2,9 +2,8 @@
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import '../../../utils/styles/text.css'
 
-export const DirectorEmailCard=({data})=>{
+export const StorekeeperEmailCard=({data})=>{
 
   const getStatus=()=>{
     let status=data.status
@@ -27,7 +26,7 @@ export const DirectorEmailCard=({data})=>{
       <Typography sx={{ mb: 1.5 }} color="text.secondary">
         {getStatus()}
       </Typography>
-      <Typography variant="body2" className='text'>
+      <Typography variant="body2">
         {data.message}
         <br />
         <br />

@@ -1,10 +1,15 @@
 
 import { MenuItem, TextField } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom"
+import { AuthContext } from "../../../utils/context/AuthContext";
+import { useHttp } from "../../../utils/hooks/http.hook";
 
 export const CustomerProductCard=({data})=>{
 
+  const {token} = useContext(AuthContext)
+  const {request,loading,error,clearError} = useHttp()
+  const [price,setPrice]=useState(0)
   const [width,setWidth]=useState(data.width)
   const [length,setLength]=useState(data.length)
 
@@ -49,6 +54,19 @@ export const CustomerProductCard=({data})=>{
       
   },[currency,length,width])
 
+  const getPriceForProduct = useCallback(async () => {
+    try {
+      const fetched = await request(`http://localhost:8080/api/product/price/${data.article}`, 'GET', null, {
+        Authorization: `Bearer ${token}`
+      })
+        setPrice(fetched)
+    } catch (e) {}
+  }, [token, request])
+
+  useEffect(() => {
+    getPriceForProduct()
+  }, [getPriceForProduct])
+
     return(
         <>
         <div class="col s12 m7">
@@ -60,7 +78,6 @@ export const CustomerProductCard=({data})=>{
          <TextField
                         id="outlined-select-currency"
                         select
-                        label="Select"
                         value={currency}
                         onChange={handleUnit}
                         helperText="Выберите единицу измерения"
@@ -77,7 +94,8 @@ export const CustomerProductCard=({data})=>{
              Наименование: {data.name} <br/>
              ширина: {width} {currency}<br/>
              длина: {length} {currency} <br/>
-             Комментарий: {data.comment}
+             Комментарий: {data.comment} <br/>
+             Цена: {Math.round(price * 100) / 100} руб
            </p>
            </div>
 

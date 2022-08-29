@@ -32,7 +32,7 @@ export const RegisterPage=()=>{
   const registerHandler = async () => {
     try {
       const data = await request('http://localhost:8080/api/auth/signup', 'POST', {...form})
-      console.log(data)
+  
       message(data.message)
     } catch (e) {}
   }
@@ -109,7 +109,7 @@ export const RegisterPage=()=>{
             </div>
             <div className="card-action">
               <button
-                className="btn yellow darken-4"
+                className="btn own-button"
                 style={{marginRight: 10}}
                 onClick={registerHandler}
                 disabled={loading}
@@ -120,7 +120,8 @@ export const RegisterPage=()=>{
               <br/>
               <NavLink to="/">
               <button
-                className="btn grey lighten-1 black-text"
+                className="waves-effect waves-light btn-small"
+                style={{marginLeft:'5px'}}
               >
                 Авторизироваться
               </button>

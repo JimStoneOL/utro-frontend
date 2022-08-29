@@ -4,7 +4,7 @@ export const StorekeeperOrderList=()=>{
    
     return(
         <>
-            Нет доступа
+           <h6 className="center" style={{marginTop:'20%'}}>Нет доступа</h6>
         </>
     )
 }

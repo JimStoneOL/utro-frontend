@@ -84,7 +84,7 @@ export const TakedManagerOrderCard=({data})=>{
       data.stage=fetched.stage
       message('Стадия успешно обновлена')
   }catch(e){
-      console.log()
+     
   }
     },[token,request])
 
@@ -106,7 +106,7 @@ export const TakedManagerOrderCard=({data})=>{
 
       return(
           <>
-                <div class="row">
+                <div class="row" key={data.id}>
       <div class="col s12 m6">
         <div class="card">
           <div class="card-content">

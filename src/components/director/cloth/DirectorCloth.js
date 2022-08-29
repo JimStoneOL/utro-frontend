@@ -80,7 +80,7 @@ export const DirectorCloth=({data,update})=>{
 
   const pressHandler = event => {
 
-    console.log(added)
+     (added)
 
     if(added){
      deleteClothBucket(data.article)
@@ -139,7 +139,7 @@ export const DirectorCloth=({data,update})=>{
           <TextField
                         id="outlined-select-currency"
                         select
-                        label="Select"
+                        
                         value={currency}
                         onChange={handleUnit}
                         helperText="Выберите единицу измерения"

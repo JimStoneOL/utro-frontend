@@ -3,7 +3,6 @@ import { ManagerFurnitureProductDetailList } from "./ManagerFurnitureProductDeta
 
 export const ManagerFurnitureDetailList=({dataList})=>{
 
-  console.log(dataList)
 
     return(<>
         {

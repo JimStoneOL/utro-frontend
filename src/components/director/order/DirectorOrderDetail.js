@@ -20,7 +20,7 @@ export const DirectorOrderDetail=()=>{
           if(orderedProductFetched.length===0){
             setOrderedProduct(null)
         }else{
-            console.log('выполнен')
+             ('выполнен')
             setOrderedProduct(orderedProductFetched)
         }
           
@@ -37,7 +37,7 @@ export const DirectorOrderDetail=()=>{
 
     return(
         <>
-        {!loading && orderedProduct ? <DirectorOrderedProductList dataList={orderedProduct}/> : <div>Заказанные продукты не найдены</div>}
+        {!loading && orderedProduct ? <DirectorOrderedProductList dataList={orderedProduct}/> : <h6 className="center" style={{marginTop:'20%'}}>Заказанные продукты не найдены</h6>}
         </>
     )
 }

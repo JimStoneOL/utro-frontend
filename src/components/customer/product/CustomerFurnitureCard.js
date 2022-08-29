@@ -57,7 +57,6 @@ export const CustomerFurnitureCard=({data})=>{
           <TextField
                         id="outlined-select-currency"
                         select
-                        label="Select"
                         value={currency}
                         onChange={handleUnit}
                         helperText="Выберите единицу измерения"
@@ -75,8 +74,8 @@ export const CustomerFurnitureCard=({data})=>{
                   тип: {data.type} <br/>
                   ширина: {width} {currency}<br/>
                   длина: {length} {currency} <br/>
-                  вес: {data.weight} <br/>
-                  цена: {data.color} <br/>
+                  вес: {data.weight} гр<br/>
+                  цена: {data.price} руб<br/>
             </p>
             </div>
           </div>

@@ -14,6 +14,7 @@ import { ManagerMiniClothList } from './ManagerMiniClothList'
 import { ManagerMiniFurnitureList } from './ManagerMiniFurnitureList'
 import { MenuItem, TextField } from '@mui/material'
 import { ManagerProductContext } from './ManagerProductContext'
+import { Link } from 'react-router-dom'
 
 
 
@@ -100,7 +101,7 @@ export const ManagerChangeDetail=({productId})=>{
 
   const sendClothProduct=useCallback(async (data) => {
 
-    console.log(data)
+     (data)
 
     await request('http://localhost:8080/api/cloth/product/template/create', 'POST', data,{
       Authorization: `Bearer ${token}`
@@ -142,7 +143,7 @@ export const ManagerChangeDetail=({productId})=>{
       update()
       message('Детали успешно изменены')
     }catch(e){
-        console.log('wrong')
+         ('wrong')
         update()
     }
   }
@@ -231,7 +232,8 @@ export const ManagerChangeDetail=({productId})=>{
                                 Выбор тканей
                             </Typography>
                             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                            {!loading && clothData && <ManagerMiniClothList dataList={clothData} selectCloth={selectCloth}/>}
+                           {!(clothData.length>0) && !loading && <h6 className="center">Пусто. <Link to={'/cloth'}>Выбрать ткани</Link></h6>}
+                            {!loading && clothData.length>0 && <ManagerMiniClothList dataList={clothData} selectCloth={selectCloth}/>}
                             </Typography>
                             </Box>
               </Modal>
@@ -248,7 +250,8 @@ export const ManagerChangeDetail=({productId})=>{
                                 Выбор фурнитуры
                             </Typography>
                             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                            {!loading && furnitureData && <ManagerMiniFurnitureList dataList={furnitureData} selectFurniture={selectFurniture}/>}
+                           {!(furnitureData.length>0) && !loading && <h6 className="center">Пусто. <Link to={'/furniture'}>Выбрать фурнитуры</Link></h6>}
+                            {!loading && furnitureData.length>0 && <ManagerMiniFurnitureList dataList={furnitureData} selectFurniture={selectFurniture}/>}
                             </Typography>
                             </Box>
               </Modal>

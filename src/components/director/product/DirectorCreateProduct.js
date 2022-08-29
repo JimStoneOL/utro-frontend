@@ -185,7 +185,7 @@ export const DirectorCreateProduct=()=>{
       furnitureProduct.forEach((item,i) => {
         if(i>0){
           item.productId=productId
-          console.log(furnitureProduct)
+           (furnitureProduct)
           sendFurnitureProduct(item)
       }
       });
@@ -198,7 +198,7 @@ export const DirectorCreateProduct=()=>{
         )
         message('Продукт успешно создан '+productId)
     }catch(e){
-        console.log('wrong')
+         ('wrong')
     }
   }
 
@@ -286,7 +286,7 @@ export const DirectorCreateProduct=()=>{
                     <TextField
                         id="outlined-select-currency"
                         select
-                        label="Select"
+                        
                         value={currency}
                         onChange={handleUnit}
                         helperText="Выберите единицу измерения"

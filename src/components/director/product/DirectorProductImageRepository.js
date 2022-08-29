@@ -38,7 +38,7 @@ export const DirectorProductImageRepository=()=>{
                   )
                   window.location.reload()
         }catch(e){
-               console.log('фывфыв') 
+                ('фывфыв') 
         }
         }else{
           message('Неверный формат файла')

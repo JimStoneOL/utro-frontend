@@ -79,7 +79,6 @@ const deleteClothBucket=useCallback(async (article) => {
 
 const pressHandler = event => {
 
-console.log(added)
 
 if(added){
  deleteClothBucket(data.article)
@@ -119,7 +118,6 @@ useEffect(() => {
           <TextField
                         id="outlined-select-currency"
                         select
-                        label="Select"
                         value={currency}
                         onChange={handleUnit}
                         helperText="Выберите единицу измерения"
@@ -139,7 +137,7 @@ useEffect(() => {
                   состав: {data.structure} <br/>
                   ширина: {width} {currency}<br/>
                   длина: {length} {currency} <br/>
-                  цена: {data.price}<br/>
+                  цена: {data.price} руб<br/>
             </p>
             </div>
           </div>

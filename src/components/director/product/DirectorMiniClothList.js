@@ -57,7 +57,7 @@ export const DirectorMiniClothList=({dataList,selectCloth})=>{
         {
             dataList.map((item,i)=>{ 
               if(i===0){
-                console.log('undefined') 
+                   
               }else{
               return(
                <>

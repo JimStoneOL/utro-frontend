@@ -25,7 +25,7 @@ export const StorekeeperCloth=({data})=>{
   const {request,loading,error,clearError} = useHttp()
   const message = useMessage()
   const [form,setForm]=useState({})
-  const [clothWarehouses,setClothWarehouses]=useState([{}])
+  const [clothWarehouses,setClothWarehouses]=useState([])
 
   const [width,setWidth]=useState(data.width)
   const [length,setLength]=useState(data.length)
@@ -158,7 +158,7 @@ export const StorekeeperCloth=({data})=>{
           <TextField
                         id="outlined-select-currency"
                         select
-                        label="Select"
+                        
                         value={currency}
                         onChange={handleUnit}
                         helperText="Выберите единицу измерения"
@@ -178,7 +178,7 @@ export const StorekeeperCloth=({data})=>{
                   состав: {data.structure} <br/>
                   ширина: {width} {currency}<br/>
                   длина: {length} {currency} <br/>
-                  цена: {data.price}<br/>
+                  цена: {data.price} руб<br/>
             </p>
             </div>
           </div>
@@ -197,7 +197,7 @@ export const StorekeeperCloth=({data})=>{
                             <TextField
                                   id="outlined-select-currency"
                                   select
-                                  label="Select"
+                                  
                                   value={currency2}
                                   onChange={handleUnit2}
                                   helperText="Выберите единицу измерения"
@@ -237,7 +237,8 @@ export const StorekeeperCloth=({data})=>{
                             Информация о складах
                             </Typography>
                             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                            {!loading && clothWarehouses && <StorekeeperClothWarehouseList dataList={clothWarehouses}/>}
+                            {!(clothWarehouses.length>0) && !loading && <h6 className="center">Пусто</h6>}
+                            {!loading && clothWarehouses.length>0 && <StorekeeperClothWarehouseList dataList={clothWarehouses}/>}
                             </Typography>
                             </Box>
                         </Modal>

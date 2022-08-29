@@ -110,7 +110,7 @@ const Confirmed=()=>{
 const DontConfirmed=()=>{
   return(
       <>
-           <div class="row">
+           <div class="row" key={data.id}>
   <div class="col s12 m6">
     <div class="card">
       <div class="card-content">

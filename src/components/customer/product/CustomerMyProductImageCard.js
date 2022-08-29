@@ -32,7 +32,7 @@ useEffect(() => {
 }, [error, message, clearError])
 
     return(<>
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345 }} key={data.id}>
       <CardMedia
         component="img"
         image={`data:image/jpeg;base64,${data.imageBytes}`}

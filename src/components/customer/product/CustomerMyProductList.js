@@ -52,7 +52,7 @@ export const ShowProduct=({dataList})=>{
     {
         dataList.map((item,i)=>{ 
           if(i===0){
-            console.log('undefined') 
+               
           }else{
           return(
            <>

@@ -12,6 +12,7 @@ import Modal from '@mui/material/Modal';
 import { CustomerProductContext } from './CustomerProductContext'
 import { CustomerMiniClothList } from './CustomerMiniClothList'
 import { CustomerMiniFurnitureList } from './CustomerMiniFurnitureList'
+import { Link } from 'react-router-dom'
 
 
 
@@ -114,7 +115,7 @@ export const CustomerChangeDetail=({productId})=>{
   const updateDetailHandler=async event=>{
     //------------------------------------------------------------------------------------------------
     try{
-      console.log(productId)
+       (productId)
 
       await request(`http://localhost:8080/api/cloth/product/delete/product/${productId}`, 'POST', null,{
         Authorization: `Bearer ${token}`
@@ -139,7 +140,7 @@ export const CustomerChangeDetail=({productId})=>{
       update()
       message('Детали успешно изменены')
     }catch(e){
-        console.log('wrong')
+         ('wrong')
         update()
     }
   }
@@ -228,7 +229,8 @@ export const CustomerChangeDetail=({productId})=>{
                                 Выбор тканей
                             </Typography>
                             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                            {!loading && clothData && <CustomerMiniClothList dataList={clothData} selectCloth={selectCloth}/>}
+                           {!(clothData.length>0) && !loading && <h6 className="center">Пусто. <Link to={'/cloth'}>Выбрать ткани</Link></h6>}
+                            {!loading && clothData.length>0 && <CustomerMiniClothList dataList={clothData} selectCloth={selectCloth}/>}
                             </Typography>
                             </Box>
               </Modal>
@@ -245,7 +247,8 @@ export const CustomerChangeDetail=({productId})=>{
                                 Выбор фурнитуры
                             </Typography>
                             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                            {!loading && furnitureData && <CustomerMiniFurnitureList dataList={furnitureData} selectFurniture={selectFurniture}/>}
+                           {!(furnitureData.length>0) && !loading && <h6 className="center">Пусто. <Link to={'/furniture'}>Выбрать фурнитуры</Link></h6>}
+                            {!loading && furnitureData.length>0 && <CustomerMiniFurnitureList dataList={furnitureData} selectFurniture={selectFurniture}/>}
                             </Typography>
                             </Box>
               </Modal>

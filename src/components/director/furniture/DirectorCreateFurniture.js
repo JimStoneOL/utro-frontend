@@ -39,7 +39,7 @@ export const DirectorCreateFurniture=()=>{
 
 
   const pressHandler = async event => {
-    console.log(form)
+     (form)
     const formData=new FormData()
     formData.append("file",file)
 
@@ -133,7 +133,7 @@ export const DirectorCreateFurniture=()=>{
                   <TextField
                         id="outlined-select-currency"
                         select
-                        label="Select"
+                        
                         value={currency}
                         onChange={handleUnit}
                         helperText="Выберите единицу измерения"

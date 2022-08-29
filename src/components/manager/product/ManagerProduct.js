@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { MenuItem, TextField,Button } from "@mui/material";
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom"
 import { AuthContext } from "../../../utils/context/AuthContext";
 import { useHttp } from "../../../utils/hooks/http.hook";
@@ -20,6 +20,7 @@ export const ManagerProduct=({data})=>{
   const [width,setWidth]=useState(data.width)
   const [length,setLength]=useState(data.length)
   const [updated,setUpdated]=useState(false)
+  const [price,setPrice]=useState(0)
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -81,6 +82,21 @@ export const ManagerProduct=({data})=>{
       
   },[currency,length,width])
 
+
+  const getPriceForProduct = useCallback(async () => {
+    try {
+      const fetched = await request(`http://localhost:8080/api/product/price/${data.article}`, 'GET', null, {
+        Authorization: `Bearer ${token}`
+      })
+        setPrice(fetched)
+    } catch (e) {}
+  }, [token, request])
+
+  useEffect(() => {
+    getPriceForProduct()
+  }, [getPriceForProduct])
+
+
   const deleteHandler=async event=>{
     try {
       const fetch = await request(`http://localhost:8080/api/product/template/delete/${data.article}`, 'POST', null,{
@@ -99,7 +115,7 @@ export const ManagerProduct=({data})=>{
 
     return(
         <>
-           <div class="col s12 m7" hidden={deleted}>
+           <div class="col s12 m7" hidden={deleted} key={data.article}>
           <div class="card horizontal">
             <div class="card-image">
               <img src={`data:image/jpeg;base64,${data.imageBytes}`}/>
@@ -108,7 +124,7 @@ export const ManagerProduct=({data})=>{
             <TextField
                         id="outlined-select-currency"
                         select
-                        label="Select"
+                        
                         value={currency}
                         onChange={handleUnit}
                         helperText="Выберите единицу измерения"
@@ -125,7 +141,8 @@ export const ManagerProduct=({data})=>{
                 Наименование: {data.name} <br/>
                 ширина: {width} {currency}<br/>
                 длина: {length} {currency} <br/>
-                Комментарий: {data.comment}
+                Комментарий: {data.comment} <br/>
+                Цена: {Math.round(price * 100) / 100} руб
               </p>
               </div>
               <div class="card-action">

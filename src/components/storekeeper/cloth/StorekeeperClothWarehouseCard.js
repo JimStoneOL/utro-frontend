@@ -141,7 +141,7 @@ export const StorekeeperClothWarehouseCard=({data})=>{
             <TextField
                         id="outlined-select-currency"
                         select
-                        label="Select"
+                        
                         value={currency}
                         onChange={handleUnit}
                         helperText="Выберите единицу измерения"
@@ -170,7 +170,7 @@ export const StorekeeperClothWarehouseCard=({data})=>{
                             <TextField
                                       id="outlined-select-currency"
                                       select
-                                      label="Select"
+                                      
                                       value={currency2}
                                       onChange={handleUnit2}
                                       helperText="Выберите единицу измерения"

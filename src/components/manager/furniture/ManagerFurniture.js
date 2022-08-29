@@ -130,7 +130,7 @@ if(deleted){
 }
 
     return(
-        <div class="col s12 m7">
+        <div class="col s12 m7" key={data.article}>
         <div class="card horizontal">
           <div class="card-image">
             <img src={`data:image/jpeg;base64,${data.imageBytes}`}/>
@@ -139,7 +139,7 @@ if(deleted){
           <TextField
                         id="outlined-select-currency"
                         select
-                        label="Select"
+                        
                         value={currency}
                         onChange={handleUnit}
                         helperText="Выберите единицу измерения"

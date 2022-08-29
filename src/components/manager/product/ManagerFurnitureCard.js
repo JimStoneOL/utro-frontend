@@ -57,7 +57,7 @@ export const ManagerFurnitureCard=({data})=>{
           <TextField
                         id="outlined-select-currency"
                         select
-                        label="Select"
+                        
                         value={currency}
                         onChange={handleUnit}
                         helperText="Выберите единицу измерения"
@@ -76,7 +76,7 @@ export const ManagerFurnitureCard=({data})=>{
                   ширина: {width} {currency}<br/>
                   длина: {length} {currency} <br/>
                   вес: {data.weight} гр<br/>
-                  цена: {data.price} <br/>
+                  цена: {data.price} руб<br/>
             </p>
             </div>
           </div>

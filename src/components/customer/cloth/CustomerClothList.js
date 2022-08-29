@@ -52,7 +52,6 @@ export const ShowCloth=({dataList})=>{
     {
         dataList.map((item,i)=>{ 
           if(dataList[i].name===''){
-            console.log('undefined') 
           }else{
           return(
            <>
